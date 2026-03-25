@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Pool;
 using Random = UnityEngine.Random;
+using MessageType = Game.Scripts.GamePlay.GamePlayController.MessageType;
 
 namespace Game.Scripts.GamePlay.Message
 {

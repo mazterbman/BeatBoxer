@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -1.6, y: 0}
+  m_AnchoredPosition: {x: -1.5999756, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6352999643956857630
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GamePlay.Arrow.ArrowController
   _arrowImage: {fileID: 8041219599018832601}
   _lightImage: {fileID: 7608723182862389467}
-  _holder: {fileID: 0}
+  _holder: {fileID: 6279194686367812451}
 --- !u!1 &5375983606840114424
 GameObject:
   m_ObjectHideFlags: 0
