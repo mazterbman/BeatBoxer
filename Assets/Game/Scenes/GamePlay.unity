@@ -1069,21 +1069,18 @@ MonoBehaviour:
   _playerInput: {fileID: 599435116}
   _messageSettings: {fileID: 11400000, guid: 915da0d72ff39ea49aa4c48bbb88b1e0, type: 2}
   _timingSettings: {fileID: 11400000, guid: c7876c25575b54f408a796a2b5dbd848, type: 2}
-  _arrowPoolSettings:
-    Prefab: {fileID: 1942970299729518281, guid: bd53e1a56b3e98841901b254d4f627bd, type: 3}
-    Parent: {fileID: 422564431}
-    CollectionCheck: 1
-    DefaultCapacity: 10
-    MaxSize: 15
   _messagePoolSettings:
     Prefab: {fileID: 4327300213240416076, guid: f599be2cedf052b41a1fceecfd828c7a, type: 3}
     Parent: {fileID: 907648600}
     CollectionCheck: 1
     DefaultCapacity: 3
     MaxSize: 5
-  _perfectWindow: 0.35
-  _normalWindow: 0.5
+  _perfectWindow: 0.1
+  _normalWindow: 0.15
+  _saveTime: 0.05
   _timeToCenter: 5
+  _arrowPrefab: {fileID: 6352999643956857630, guid: bd53e1a56b3e98841901b254d4f627bd, type: 3}
+  _arrowsParent: {fileID: 422564431}
 --- !u!1001 &677780687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1388,43 +1385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.Score.ScoreUiController
   _scoreText: {fileID: 1309830251}
-  _shakeSettings:
-    ShakeTransform: {fileID: 1309830250}
-    EndScale: {x: 1.2, y: 1.2, z: 1.2}
-    TimeShake: 0.75
-    ShakeCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.4
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+  _shakeSettings: {fileID: 11400000, guid: 9b38d3820b39b0a45985759632b3e4e8, type: 2}
 --- !u!114 &741259881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1478,43 +1439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.Combo.ComboUiController
   _comboText: {fileID: 223844265}
-  _shakeSettings:
-    ShakeTransform: {fileID: 223844264}
-    EndScale: {x: 1.2, y: 1.2, z: 1.2}
-    TimeShake: 0.75
-    ShakeCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.4
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+  _shakeSettings: {fileID: 11400000, guid: 9b38d3820b39b0a45985759632b3e4e8, type: 2}
 --- !u!1 &758873367
 GameObject:
   m_ObjectHideFlags: 0
@@ -3738,10 +3663,6 @@ PrefabInstance:
     - target: {fileID: 1765037623043356116, guid: 368c32cff5e44724a8dfb01178385855, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3419458774672728335, guid: 368c32cff5e44724a8dfb01178385855, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7109415391899456402, guid: 368c32cff5e44724a8dfb01178385855, type: 3}
       propertyPath: m_Name

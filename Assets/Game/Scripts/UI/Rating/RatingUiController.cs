@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Game.Scripts.ScriptableObject;
 using Game.Scripts.UI.Health;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,12 +32,16 @@ namespace Game.Scripts.UI.Rating
         [SerializeField] 
         private ShakeSettings _shakeSettings;
         
+        private ShakeSettings _loadedShakeSettings;
         private Coroutine _shakeCoroutine;
 
         private void Awake()
         {
             SetBlockColors();
-            _shakeSettings.SetNormalScale();
+            
+            _loadedShakeSettings = _shakeSettings.Clone();
+            _loadedShakeSettings.ShakeTransform = transform;
+            _loadedShakeSettings.SetNormalScale();
         }
 
         private void OnValidate()
@@ -68,15 +73,15 @@ namespace Game.Scripts.UI.Rating
         private IEnumerator ShakeIE()
         {
             float time = 0;
-            while (time < _shakeSettings.TimeShake)
+            while (time < _loadedShakeSettings.TimeShake)
             {
                 time += Time.deltaTime;
-                _shakeSettings.ShakeTransform.localScale = Vector3.Lerp(_shakeSettings.NormalScale,
-                    _shakeSettings.EndScale, _shakeSettings.GetEvaluate(time));
+                _loadedShakeSettings.ShakeTransform.localScale = Vector3.Lerp(_loadedShakeSettings.NormalScale,
+                    _loadedShakeSettings.EndScale, _loadedShakeSettings.GetEvaluate(time));
                 yield return null;
             }
-            _shakeSettings.ShakeTransform.localScale = Vector3.Lerp(_shakeSettings.NormalScale,
-                _shakeSettings.EndScale, _shakeSettings.GetEvaluate(_shakeSettings.TimeShake));
+            _loadedShakeSettings.ShakeTransform.localScale = Vector3.Lerp(_loadedShakeSettings.NormalScale,
+                _loadedShakeSettings.EndScale, _loadedShakeSettings.GetEvaluate(_loadedShakeSettings.TimeShake));
         }
 
         private void SetBlockColors()

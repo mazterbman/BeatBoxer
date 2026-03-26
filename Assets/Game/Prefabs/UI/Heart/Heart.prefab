@@ -449,43 +449,7 @@ MonoBehaviour:
     OriginColor: {r: 0.6666667, g: 0.23529412, b: 0.29411766, a: 1}
     NormalColor: {r: 1, g: 1, b: 1, a: 1}
     BackColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
-  _shakeSettings:
-    ShakeTransform: {fileID: 3443948088583414303}
-    EndScale: {x: 1.2, y: 1.2, z: 1.2}
-    TimeShake: 0.75
-    ShakeCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.4
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+  _shakeSettings: {fileID: 11400000, guid: 9b38d3820b39b0a45985759632b3e4e8, type: 2}
 --- !u!95 &3419458774672728335
 Animator:
   serializedVersion: 7

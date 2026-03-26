@@ -5,7 +5,7 @@ namespace Game.Scripts.UI.Center
 {
     public class CenterUiController : MonoBehaviour
     {
-        private static readonly int ClkID = Animator.StringToHash("Clk"); 
+        private static readonly int ClkID = Animator.StringToHash("Click"); 
         
         [Header("Reference")] [SerializeField] 
         private Animator _animator;

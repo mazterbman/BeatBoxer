@@ -18,74 +18,58 @@ namespace Game.Scripts.GamePlay
 {
     public class GamePlayController : MonoBehaviour
     {
-        #region FIELDS
-
         [Header("References")]
-        [Tooltip("Audio source playing the song.")]
         [SerializeField] private AudioSource _audioSource;
-        [Tooltip("Rating UI controller.")]
         [SerializeField] private RatingController _ratingController;
-        [Tooltip("Health UI controller.")]
         [SerializeField] private HealthController _healthController;
-        [Tooltip("Score UI controller.")]
         [SerializeField] private ScoreUiController _scoreUiController;
-        [Tooltip("Combo UI controller.")]
         [SerializeField] private ComboUiController _comboUiController;
-        [Tooltip("Center animation controller.")]
         [SerializeField] private CenterUiController _centerUiController;
-        
-        [Header("Input")]
-        [Tooltip("PlayerInput component for Input System actions.")]
         [SerializeField] private PlayerInput _playerInput;
 
         [Header("Settings")]
-        [Tooltip("Message settings ScriptableObject.")]
         [SerializeField] private MessageSettings _messageSettings;
-        [Tooltip("Timing settings ScriptableObject.")]
         [SerializeField] private TimingSettings _timingSettings;
-        [Tooltip("Pool settings for arrows.")]
-        [SerializeField] private PoolSettings _arrowPoolSettings;
-        [Tooltip("Pool settings for messages.")]
-        [SerializeField] private PoolSettings _messagePoolSettings;
+        [SerializeField] private PoolSettings _messagePoolSettings; 
 
         [Header("Timing Windows")]
-        [Tooltip("Time window for perfect hit (±).")]
         [SerializeField] [Range(0, 0.5f)] private float _perfectWindow = 0.05f;
-        [Tooltip("Time window for normal hit (±).")]
         [SerializeField] [Range(0, 0.5f)] private float _normalWindow = 0.1f;
+        [SerializeField] [Range(0, 0.5f)] private float _saveTime = 0.1f;
 
         [Header("Movement")]
-        [Tooltip("Time for arrow to travel from edge to center.")]
         [SerializeField] [Range(0.5f, 10f)] private float _timeToCenter = 5f;
+
+        // Префаб стрелки (необходимо задать в инспекторе)
+        [Header("Arrow Prefab")]
+        [SerializeField] private ArrowController _arrowPrefab;
+        [SerializeField] private Transform _arrowsParent; 
 
         private Coroutine _gameCoroutine;
         private List<ArrowController> _activeArrows = new List<ArrowController>();
-        private ObjectPool<ArrowController> _arrowPool;
+        private List<ArrowController> _inActiveArrows = new List<ArrowController>();
         private ObjectPool<MessageController> _messagePool;
 
-        // Cloned settings to avoid modifying original assets
         private MessageSettings _loadedMessageSettings;
-        private List<TimingValue> _adjustedTimingValues; // copies with shifted times
+        private List<TimingValue> _adjustedTimingValues;
+        private List<TimingValue> _originalTimingValues;
 
         private bool _isGameActive;
+        private bool _wasInteract = false;
         private bool _inputActionsAdded;
-
-        #endregion
-
-        #region Unity Lifecycle
 
         private void Start()
         {
-            if (!_timingSettings || !_messageSettings)
+            if (!_timingSettings || !_messageSettings || !_arrowPrefab)
             {
-                Debug.LogError($"<color=red>[GamePlayController] [{gameObject.name}]</color> Missing timing or message settings!");
+                Debug.LogError($"[GamePlayController] Missing timing, message, or arrow prefab!");
                 return;
             }
-
+            
             _loadedMessageSettings = _messageSettings.Clone();
             RandomizeAllMessages();
 
-            // Adjust timing values by subtracting travel time so they align with arrow spawn
+            // Сдвигаем времена на время движения, чтобы спавнить стрелки раньше
             _adjustedTimingValues = new List<TimingValue>();
             foreach (var tv in _timingSettings.TimingValues)
             {
@@ -98,20 +82,16 @@ namespace Game.Scripts.GamePlay
                 };
                 _adjustedTimingValues.Add(copy);
             }
+            
+            _originalTimingValues = new List<TimingValue>(_timingSettings.TimingValues);
 
-            // Create object pools
-            CreatePools();
+            // Создаём пул только для сообщений
+            CreateMessagePool();
 
             _healthController.OnChanged += CheckEnd;
-            
-            if (!_playerInput)
-                _playerInput = GetComponent<PlayerInput>();
 
             if (!_playerInput)
-            {
-                Debug.LogError($"<color=red>[GamePlayController] [{gameObject.name}]</color> PlayerInput component missing!");
-                return;
-            }
+                _playerInput = GetComponent<PlayerInput>();
 
             AddInputActions();
             StartGame();
@@ -124,24 +104,19 @@ namespace Game.Scripts.GamePlay
             RemoveInputActions();
         }
 
-        #endregion
-
-        #region Public API
-
         public void StartGame()
         {
             if (_gameCoroutine != null) StopCoroutine(_gameCoroutine);
             _isGameActive = true;
 
-            // Reset UI
             _healthController.ResetHealth();
             _comboUiController.ResetCombo();
             _scoreUiController.ResetScore();
             _ratingController.SetRating(1);
 
-            // Clear any existing arrows
+            // Удаляем все существующие стрелки
             foreach (var arrow in _activeArrows)
-                arrow.Hide();
+                Destroy(arrow.gameObject);
             _activeArrows.Clear();
 
             _gameCoroutine = StartCoroutine(GameCoroutine());
@@ -155,20 +130,46 @@ namespace Game.Scripts.GamePlay
             if (_gameCoroutine != null)
                 StopCoroutine(_gameCoroutine);
 
+            _activeArrows.ForEach(arg1=>arg1.StopMove());
+            _inActiveArrows.ForEach(arg1 => arg1.StopMove());
+            
             _audioSource.Stop();
-            Debug.Log($"<color=yellow>[GamePlayController] [{gameObject.name}]</color> Game ended.");
+            _wasInteract = false;
+            Debug.Log($"[GamePlayController] Game ended.");
+        }
+        
+        public void ProcessHit(ArrowController arrow, MessageType result)
+        {
+            if (!arrow) 
+                return;
+            
+            _activeArrows.Remove(arrow);
+            _inActiveArrows.Add(arrow);
+            
+            arrow.Hide();
+            Process(result);
+            Debug.Log($"[GamePlayController] Hit {arrow.ArrowType} {arrow.ArrowDirection} with {result}");
         }
 
-        #endregion
+        public void RemoveArrow(ArrowController arrow)
+        {
+            if (!arrow)
+                return;
 
-        #region Private API (Game Logic)
+            if (_inActiveArrows.Contains(arrow))
+            {
+                _inActiveArrows.Remove(arrow);
+            }
+            else
+            {
+                _activeArrows.Remove(arrow);
+            }
+        }
 
         private IEnumerator GameCoroutine()
         {
             _audioSource.clip = _timingSettings.AudioClip;
             _audioSource.Play();
-
-            Debug.Log($"<color=white>[GamePlayController] [{gameObject.name}]</color> Start game, duration: {_audioSource.clip.length}");
 
             yield return new WaitUntil(() => _audioSource.isPlaying);
 
@@ -177,133 +178,143 @@ namespace Game.Scripts.GamePlay
 
             while (_audioSource.time < endTime && _isGameActive)
             {
-                // Spawn arrows when their time comes
                 if (nextIndex < _adjustedTimingValues.Count &&
                     _adjustedTimingValues[nextIndex].TimeStart <= _audioSource.time)
                 {
-                    SpawnArrow(_adjustedTimingValues[nextIndex]);
+                    SpawnArrow(_adjustedTimingValues[nextIndex], _originalTimingValues[nextIndex]);
                     nextIndex++;
                 }
                 yield return null;
             }
 
-            // Spawn any remaining arrows if audio ended early (just in case)
             while (nextIndex < _adjustedTimingValues.Count && _isGameActive)
             {
-                SpawnArrow(_adjustedTimingValues[nextIndex]);
+                SpawnArrow(_adjustedTimingValues[nextIndex], _originalTimingValues[nextIndex]);
                 nextIndex++;
                 yield return null;
             }
 
-            // Wait for all arrows to finish moving or be hit
             while (_activeArrows.Count > 0 && _isGameActive)
                 yield return null;
 
             EndGame();
         }
 
-        private void SpawnArrow(TimingValue timing)
+        // Спавн стрелки без пула
+        private void SpawnArrow(TimingValue adjustedTiming, TimingValue originalTiming)
         {
-            // Calculate ideal time in audio (when arrow reaches center)
-            float idealTime = timing.TimeStart + _timeToCenter;
+            // idealTime – момент достижения центра в аудиовремени
+            float idealTime = originalTiming.TimeStart + _timeToCenter;
 
-            ArrowController arrow = _arrowPool.Get();
-            arrow.Show(_arrowPool, timing.ArrowType, timing.ArrowDirection,
-                _timeToCenter, idealTime, timing.TimeStart, timing.TimeEnd);
+            ArrowController arrow = Instantiate(_arrowPrefab,
+                _arrowsParent ? _arrowsParent : transform);
+            arrow.Show(this,originalTiming.ArrowType,
+                originalTiming.ArrowDirection, _timeToCenter, idealTime, 
+                originalTiming.TimeStart, originalTiming.TimeEnd, _saveTime);
 
             _activeArrows.Add(arrow);
 
-            Debug.Log($"<color=white>[GamePlayController] [{gameObject.name}]</color> Spawned {timing.ArrowType} {timing.ArrowDirection} at audio time {_audioSource.time:F2}, ideal {idealTime:F2}");
+            Debug.Log($"[GamePlayController] Spawned {originalTiming.ArrowType} {originalTiming.ArrowDirection} at audio time {_audioSource.time:F2}, ideal {idealTime:F2}");
         }
 
         private void OnArrowPressed(ArrowDirection direction)
         {
-            // Find all arrows of this direction that are not held yet
-            List<ArrowController> candidates = _activeArrows.FindAll(a => a.ArrowDirection == direction);
-
-            foreach (var arrow in candidates)
+            if (_activeArrows.Count <= 0)
             {
-                if (arrow.ArrowType == ArrowType.Click)
+                Process(MessageType.Early);
+                return;
+            }
+
+            ArrowController arrow = _activeArrows[0];
+
+            if (arrow.RemainingTime > _normalWindow + _saveTime)
+            {
+                Process(MessageType.Early);
+                return;
+            }
+            
+            // Проверка направления
+            if (arrow.ArrowDirection != direction)
+            {
+                ProcessHit(arrow, MessageType.Miss);
+                return;
+            }
+
+            float currentTime = _audioSource.time;
+
+            // Для Click-стрелок
+            if (arrow.ArrowType == ArrowType.Click)
+            {
+                MessageType result;
+                if (arrow.RemainingTime <= _perfectWindow + _saveTime)
+                    result = MessageType.Perfect;
+                else if (arrow.RemainingTime <= _normalWindow + _saveTime)
+                    result = MessageType.Normal;
+                else
+                    result = MessageType.Late;    // нажали позже центра
+
+                ProcessHit(arrow, result);
+                return;
+            }
+            // Для Hold-стрелок
+            else
+            {
+                // Проверяем, что нажатие произошло в интервале удержания
+                if (currentTime >= arrow.HoldStartTime && currentTime <= arrow.HoldEndTime)
                 {
-                    // Evaluate click accuracy
-                    float timeDiff = _audioSource.time - arrow.IdealTime;
-                    float absDiff = Mathf.Abs(timeDiff);
-
-                    MessageType result;
-                    if (absDiff <= _perfectWindow)
-                        result = MessageType.Perfect;
-                    else if (absDiff <= _normalWindow)
-                        result = MessageType.Normal;
-                    else if (timeDiff < 0)
-                        result = MessageType.Early;
-                    else
-                        result = MessageType.Late;
-
-                    ProcessHit(arrow, result);
-                    break; // One hit per press
+                    arrow.OnHoldPress();
                 }
-                else // Hold
+                // Если вне интервала – игнорируем (промах будет при отпускании или таймауте)
+                // Можно сразу считать Miss, если стрелка уже прошла центр
+                else
                 {
-                    // Check if press is within hold start window
-                    float time = _audioSource.time;
-                    if (time >= arrow.HoldStartTime && time <= arrow.HoldEndTime)
-                    {
-                        arrow.OnHoldPress();
-                        // We'll evaluate at release time
-                    }
-                    // else – press too early or too late, will be handled by release or timeout
+                    ProcessHit(arrow, MessageType.Miss);
                 }
             }
         }
 
         private void OnArrowReleased(ArrowDirection direction)
         {
-            List<ArrowController> candidates = _activeArrows.FindAll(a => a.ArrowDirection == direction && a.ArrowType == ArrowType.Hold);
-
-            foreach (var arrow in candidates)
+            if (_wasInteract)
             {
-                if (arrow.IsHeld)
-                {
-                    float releaseTime = _audioSource.time;
-                    bool success = releaseTime >= arrow.HoldStartTime && releaseTime <= arrow.HoldEndTime;
+                _wasInteract = false;
+                return;
+            }
 
-                    if (success)
-                    {
-                        // Perfect hold – no extra timing, just success
-                        ProcessHit(arrow, MessageType.Perfect);
-                    }
-                    else
-                    {
-                        // Miss because released too early or too late
-                        ProcessHit(arrow, MessageType.Miss);
-                    }
-                    arrow.OnHoldRelease();
-                    break;
-                }
+            if (_activeArrows.Count <= 0)
+            {
+                Process(MessageType.Miss);
+                return;
+            }
+
+            ArrowController arrow = _activeArrows[0];
+            if (arrow.ArrowType != ArrowType.Hold || arrow.ArrowDirection != direction)
+            {
+                ProcessHit(arrow, MessageType.Miss);
+                return;
+            }
+
+            if (arrow.IsHeld)
+            {
+                float releaseTime = _audioSource.time;
+                bool success = releaseTime >= arrow.HoldStartTime && releaseTime <= arrow.HoldEndTime;
+                ProcessHit(arrow, success ? MessageType.Perfect : MessageType.Miss);
+                arrow.OnHoldRelease();
+                return;
             }
         }
 
-        private void ProcessHit(ArrowController arrow, MessageType result)
+        private void Process(MessageType result)
         {
-            // Remove from active list and hide arrow
-            _activeArrows.Remove(arrow);
-            arrow.Hide();
-
-            // Spawn message
+            _wasInteract = true;
             SpawnMessage(result);
-
-            // Update game systems
             UpdateSystem(result);
-
-            // Shake UI elements for feedback
+            
             _scoreUiController.Shake();
             _comboUiController.Shake();
+            _healthController.ShakeAll();
             _ratingController.ShakeAll();
-
-            // Animate center
             _centerUiController.Clk();
-
-            Debug.Log($"<color=green>[GamePlayController] [{gameObject.name}]</color> Hit {arrow.ArrowType} {arrow.ArrowDirection} with {result}");
         }
 
         private void UpdateSystem(MessageType result)
@@ -335,11 +346,8 @@ namespace Game.Scripts.GamePlay
                 EndGame();
         }
 
-        #endregion
-        
-        #region Private API (Input System)
+        #region Input System
 
-        /// <summary>Subscribes to input actions.</summary>
         private void AddInputActions()
         {
             if (_inputActionsAdded) return;
@@ -347,18 +355,15 @@ namespace Game.Scripts.GamePlay
             var arrowAction = _playerInput.actions["Arrow"];
             if (arrowAction == null)
             {
-                Debug.LogError($"<color=red>[GamePlayController] [{gameObject.name}]</color> Action 'Arrow' not found in Input Actions!");
+                Debug.LogError($"[GamePlayController] Action 'Arrow' not found in Input Actions!");
                 return;
             }
 
             arrowAction.started += OnArrowStarted;
             arrowAction.canceled += OnArrowCanceled;
             _inputActionsAdded = true;
-
-            Debug.Log($"<color=green>[GamePlayController] [{gameObject.name}]</color> Input actions registered.");
         }
 
-        /// <summary>Unsubscribes from input actions.</summary>
         private void RemoveInputActions()
         {
             if (!_inputActionsAdded) return;
@@ -370,11 +375,8 @@ namespace Game.Scripts.GamePlay
                 arrowAction.canceled -= OnArrowCanceled;
             }
             _inputActionsAdded = false;
-
-            Debug.Log($"<color=yellow>[GamePlayController] [{gameObject.name}]</color> Input actions unregistered.");
         }
 
-        /// <summary>Handles arrow key press (started).</summary>
         private void OnArrowStarted(InputAction.CallbackContext context)
         {
             if (!_isGameActive) return;
@@ -384,7 +386,6 @@ namespace Game.Scripts.GamePlay
             OnArrowPressed(direction);
         }
 
-        /// <summary>Handles arrow key release (canceled).</summary>
         private void OnArrowCanceled(InputAction.CallbackContext context)
         {
             if (!_isGameActive) return;
@@ -394,12 +395,8 @@ namespace Game.Scripts.GamePlay
             OnArrowReleased(direction);
         }
 
-        /// <summary>Converts Input System Vector2 to ArrowDirection.</summary>
         private ArrowDirection GetArrowDirectionFromInput(Vector2 input)
         {
-            // Input System Vector2: (x, y) where:
-            // - x: -1 = Left, 1 = Right
-            // - y: -1 = Down, 1 = Up
             if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
                 return input.x > 0 ? ArrowDirection.Right : ArrowDirection.Left;
             else
@@ -408,32 +405,10 @@ namespace Game.Scripts.GamePlay
 
         #endregion
 
-        #region Message & Arrow Pool Management
+        #region Message Pool (остаётся без изменений)
 
-        private void CreatePools()
+        private void CreateMessagePool()
         {
-            _arrowPool = new ObjectPool<ArrowController>(
-                createFunc: () =>
-                {
-                    GameObject go = Instantiate(_arrowPoolSettings.Prefab, _arrowPoolSettings.Parent ? _arrowPoolSettings.Parent : transform);
-                    go.SetActive(false);
-                    return go.GetComponent<ArrowController>();
-                },
-                actionOnGet: (arrow) =>
-                {
-                    arrow.gameObject.SetActive(true);
-                    // Do not add to list here, will be added when spawned
-                },
-                actionOnRelease: (arrow) =>
-                {
-                    arrow.gameObject.SetActive(false);
-                },
-                actionOnDestroy: (arrow) => Destroy(arrow.gameObject),
-                collectionCheck: _arrowPoolSettings.CollectionCheck,
-                defaultCapacity: _arrowPoolSettings.DefaultCapacity,
-                maxSize: _arrowPoolSettings.MaxSize
-            );
-
             _messagePool = new ObjectPool<MessageController>(
                 createFunc: () =>
                 {
@@ -478,7 +453,6 @@ namespace Game.Scripts.GamePlay
 
         private void RandomizeAllMessages()
         {
-            // Shuffle each message list
             _loadedMessageSettings.NormalMessages = Shuffle(_loadedMessageSettings.NormalMessages);
             _loadedMessageSettings.PerfectMessages = Shuffle(_loadedMessageSettings.PerfectMessages);
             _loadedMessageSettings.LateMessages = Shuffle(_loadedMessageSettings.LateMessages);
@@ -512,11 +486,11 @@ namespace Game.Scripts.GamePlay
             public int DefaultCapacity = 10;
             public int MaxSize = 15;
         }
-        
+
         public enum MessageType
         {
-            Normal = 0, 
-            Perfect, 
+            Normal = 0,
+            Perfect,
             Late,
             Early,
             Miss,

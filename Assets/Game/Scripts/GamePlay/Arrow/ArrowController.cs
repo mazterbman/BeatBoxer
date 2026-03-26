@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using Game.Scripts.ScriptableObject;
 using UnityEngine;
-using UnityEngine.Pool;
 using UnityEngine.UI;
 
 namespace Game.Scripts.GamePlay.Arrow
@@ -11,100 +12,53 @@ namespace Game.Scripts.GamePlay.Arrow
     /// </summary>
     public class ArrowController : MonoBehaviour
     {
-        #region FIELDS
-
         [Header("References")]
-        [Tooltip("Image component for the arrow sprite.")]
         [SerializeField] private Image _arrowImage;
-
-        [Tooltip("Image for the light effect (optional).")]
         [SerializeField] private Image _lightImage;
-
-        [Tooltip("RectTransform that moves along the screen.")]
+        [SerializeField] private Image _traceImage;
         [SerializeField] private RectTransform _holder;
 
+        [Header("Settings")]
+        [SerializeField] private ColorsArrowSetting _colorsArrowSetting;
+
         private Coroutine _moveCoroutine;
-        private ObjectPool<ArrowController> _arrowPool;
+        private GamePlayController _controller;
 
         // Timing data
+        private ColorsArrowSetting.ColorArrow _colorArrowSelected;
         private ArrowType _arrowType;
         private ArrowDirection _arrowDirection;
-        private float _idealTime;           // Time in audio when arrow reaches center
-        private float _holdStartTime;       // Time in audio when hold should start
-        private float _holdEndTime;         // Time in audio when hold should end
-        private bool _isHeld;               // Whether hold is currently active
+        private float _idealTime;
+        private float _holdStartTime;
+        private float _holdEndTime;
+        private bool _isHeld;
+        private bool _isPassedCenter;
 
         // Movement state
-        private float _remainingTime;       // Time left until center
+        private float _remainingTime;
         private float _totalMoveDuration;
 
-        #endregion
-
-        #region Public API
-
-        /// <summary>Gets the arrow type (Click or Hold).</summary>
+        // ----- Публичные свойства -----
         public ArrowType ArrowType => _arrowType;
-
         public ArrowDirection ArrowDirection => _arrowDirection;
-        
-        /// <summary>Gets the remaining time until the arrow reaches the center.</summary>
         public float RemainingTime => _remainingTime;
-
-        /// <summary>Gets the ideal hit time in audio timeline.</summary>
         public float IdealTime => _idealTime;
-
-        /// <summary>Gets the hold start time in audio timeline.</summary>
         public float HoldStartTime => _holdStartTime;
-
-        /// <summary>Gets the hold end time in audio timeline.</summary>
         public float HoldEndTime => _holdEndTime;
-
-        /// <summary>Gets whether the hold is currently active.</summary>
         public bool IsHeld => _isHeld;
+        public bool IsPassedCenter => _isPassedCenter;
+
 
         /// <summary>
-        /// Initialises the arrow with all required data and starts movement.
+        /// Принудительно скрывает стрелку (промах). Теперь уничтожает объект.
         /// </summary>
-        /// <param name="arrowPool">Pool to release the arrow to.</param>
-        /// <param name="arrowType">Click or Hold.</param>
-        /// <param name="direction">Direction (Up, Down, Left, Right).</param>
-        /// <param name="moveDuration">Time to travel from edge to center.</param>
-        /// <param name="idealTime">Audio time when arrow reaches center.</param>
-        /// <param name="holdStart">Audio time when hold should start (0 for Click).</param>
-        /// <param name="holdEnd">Audio time when hold should end (0 for Click).</param>
-        public void Show(ObjectPool<ArrowController> arrowPool, ArrowType arrowType,
-            ArrowDirection direction, float moveDuration, float idealTime,
-            float holdStart = 0f, float holdEnd = 0f)
-        {
-            _arrowPool = arrowPool;
-            _arrowType = arrowType;
-            _idealTime = idealTime;
-            _holdStartTime = holdStart;
-            _holdEndTime = holdEnd;
-            _remainingTime = moveDuration;
-            _totalMoveDuration = moveDuration;
-            _arrowDirection = direction;
-            _isHeld = false;
-
-            // Set visual direction
-            SetDirectionImage(direction);
-
-            // Name for debugging
-            gameObject.name = $"Arrow_{arrowType}_{direction}";
-
-            // Start from left edge
-            _holder.anchoredPosition = new Vector2(-_holder.sizeDelta.x, 0f);
-            gameObject.SetActive(true);
-
-            // Stop any previous movement
-            if (_moveCoroutine != null)
-                StopCoroutine(_moveCoroutine);
-
-            _moveCoroutine = StartCoroutine(MoveCoroutine());
-        }
-
-        /// <summary>Forces the arrow to hide immediately (miss).</summary>
         public void Hide()
+        {
+            if (_isPassedCenter) return;
+            OnReachCenter();
+        }
+        
+        private void Destroy()
         {
             if (_moveCoroutine != null)
             {
@@ -112,51 +66,99 @@ namespace Game.Scripts.GamePlay.Arrow
                 _moveCoroutine = null;
             }
 
-            // Release back to pool after one frame
-            StartCoroutine(ReleaseCoroutine());
+            _controller.RemoveArrow(this);
+            Destroy(gameObject);
         }
 
-        /// <summary>Called when player presses the key for this arrow (only for Hold type).</summary>
         public void OnHoldPress()
         {
             if (_arrowType == ArrowType.Hold && !_isHeld)
                 _isHeld = true;
         }
 
-        /// <summary>Called when player releases the key for this arrow (only for Hold type).</summary>
         public void OnHoldRelease()
         {
             if (_arrowType == ArrowType.Hold && _isHeld)
                 _isHeld = false;
         }
 
-        #endregion
+        public void Show(GamePlayController controller,ArrowType arrowType, 
+            ArrowDirection direction, float moveDuration, float idealTime,
+            float holdStart = 0f, float holdEnd = 0f, float saveTime = 0f)
+        {
+            _controller = controller;
+            
+            _arrowType = arrowType;
+            _arrowDirection = direction;
+            _idealTime = idealTime;
+            _holdStartTime = holdStart;
+            _holdEndTime = holdEnd;
 
-        #region Private API
+            // Полное время движения от левого края до правого края
+            _remainingTime = moveDuration + saveTime;
+            _totalMoveDuration = moveDuration * 2f;
+            _isPassedCenter = false;
+
+            if (_arrowType == ArrowType.Click)
+                _traceImage.gameObject.SetActive(false);
+            
+            SetDirectionImage(direction);
+            SetColorsFromDirection(direction);
+            gameObject.name = $"Arrow_{arrowType}_{direction}";
+
+            // Начальная позиция (левый край)
+            _holder.anchoredPosition = new Vector2(-_holder.sizeDelta.x, 0f);
+            gameObject.SetActive(true);
+
+            StopMove();
+            _moveCoroutine = StartCoroutine(MoveCoroutine());
+        }
+
+        public void StopMove()
+        {
+            if (_moveCoroutine != null)
+                StopCoroutine(_moveCoroutine);
+        }
 
         private IEnumerator MoveCoroutine()
         {
-            float startRemaining = _remainingTime;
+            float startRemaining = _totalMoveDuration;
             Vector2 startPos = _holder.anchoredPosition;
-            Vector2 targetPos = new Vector2(1920, startPos.y); // Right edge
+            float targetX = 1920f + _holder.sizeDelta.x / 2f; // правый край экрана (зависит от разрешения)
+            Vector2 targetPos = new Vector2(targetX, startPos.y);
 
-            while (_remainingTime > 0f)
+            while (_totalMoveDuration > 0f)
             {
-                _remainingTime -= Time.deltaTime;
-                float t = 1f - (_remainingTime / startRemaining);
+                _totalMoveDuration -= Time.deltaTime;
+                float t = 1f - (_totalMoveDuration / startRemaining);
                 _holder.anchoredPosition = Vector2.Lerp(startPos, targetPos, t);
+
+                // Проверяем достижение центра (x = 960)
+                if (!_isPassedCenter && _holder.anchoredPosition.x >= 960f)
+                {
+                    _remainingTime = -1;
+                    _isPassedCenter = true;
+                    _controller.ProcessHit(this, GamePlayController.MessageType.Late);
+                    OnReachCenter();
+                }
+                else
+                {
+                    _remainingTime -= Time.deltaTime;
+                }
+
                 yield return null;
             }
 
-            // Arrow reached center – if it's a Click, it's a miss; if Hold, also miss if not held correctly
-            _remainingTime = -1f;
-            Hide();
+            // Достигли правого края – уничтожаем
+            Destroy();
         }
 
-        private IEnumerator ReleaseCoroutine()
+        private void OnReachCenter()
         {
-            yield return null;
-            _arrowPool.Release(this);
+            _isPassedCenter = true;
+            _lightImage.enabled = false;
+            SetColors(_colorArrowSelected.Color * _colorArrowSelected.ColorMultiplay);
+            // Можно также запустить анимацию или звуковой эффект
         }
 
         private void SetDirectionImage(ArrowDirection direction)
@@ -178,6 +180,32 @@ namespace Game.Scripts.GamePlay.Arrow
             }
         }
 
-        #endregion
+        private void SetColorsFromDirection(ArrowDirection direction)
+        {
+            _colorArrowSelected = _colorsArrowSetting.ColorArrows.Find
+                (arg1 => arg1.ArrowDirection == direction);
+            SetColors(_colorArrowSelected.Color);
+        }
+
+        private void SetColors(Color color)
+        {
+            _arrowImage.color = color;
+            _lightImage.color = color;
+            _traceImage.color = color;
+        }
+    }
+
+    [Serializable]
+    public class ColorsArrowSetting
+    {
+        public List<ColorArrow> ColorArrows;
+        
+        [Serializable]
+        public struct ColorArrow
+        {
+            public ArrowDirection ArrowDirection;
+            public Color Color;
+            public Color ColorMultiplay;
+        }
     }
 }

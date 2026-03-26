@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Game.Scripts.ScriptableObject;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,11 +35,14 @@ namespace Game.Scripts.UI.Health
         private ShakeSettings _shakeSettings;
 
         private Coroutine _shakeCoroutine;
+        private ShakeSettings _loadedShakeSettings;
 
         private void Awake()
         {
             SetBlockColors();
-            _shakeSettings.SetNormalScale();
+            _loadedShakeSettings = _shakeSettings.Clone();
+            _loadedShakeSettings.ShakeTransform = transform;
+            _loadedShakeSettings.SetNormalScale();
         }
 
         private void OnValidate()
@@ -70,15 +74,15 @@ namespace Game.Scripts.UI.Health
         private IEnumerator ShakeIE()
         {
             float time = 0;
-            while (time < _shakeSettings.TimeShake)
+            while (time < _loadedShakeSettings.TimeShake)
             {
                 time += Time.deltaTime;
-                _shakeSettings.ShakeTransform.localScale = Vector3.Lerp(_shakeSettings.NormalScale,
-                    _shakeSettings.EndScale, _shakeSettings.GetEvaluate(time));
+                _loadedShakeSettings.ShakeTransform.localScale = Vector3.Lerp(_loadedShakeSettings.NormalScale,
+                    _loadedShakeSettings.EndScale, _loadedShakeSettings.GetEvaluate(time));
                 yield return null;
             }
-            _shakeSettings.ShakeTransform.localScale = Vector3.Lerp(_shakeSettings.NormalScale,
-                _shakeSettings.EndScale, _shakeSettings.GetEvaluate(_shakeSettings.TimeShake));
+            _loadedShakeSettings.ShakeTransform.localScale = Vector3.Lerp(_loadedShakeSettings.NormalScale,
+                _loadedShakeSettings.EndScale, _loadedShakeSettings.GetEvaluate(_loadedShakeSettings.TimeShake));
         }
 
         private void SetBlockColors()
@@ -98,29 +102,5 @@ namespace Game.Scripts.UI.Health
         public Color OriginColor;
         public Color NormalColor;
         public Color BackColor;
-    }
-
-    [Serializable]
-    public class ShakeSettings
-    {
-        public Transform ShakeTransform;
-        public Vector3 EndScale;
-        public float TimeShake;
-        public AnimationCurve ShakeCurve;
-        
-        [NonSerialized]
-        public Vector3 NormalScale;
-
-        public void SetNormalScale()
-        {
-            if (!ShakeTransform) return;
-
-            NormalScale = ShakeTransform.localScale;
-        }
-
-        public float GetEvaluate(float time)
-        {
-            return ShakeCurve.Evaluate(time / TimeShake);
-        }
     }
 }
