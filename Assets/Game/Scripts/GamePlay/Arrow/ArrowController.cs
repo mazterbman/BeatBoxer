@@ -98,16 +98,15 @@ namespace Game.Scripts.GamePlay.Arrow
             _remainingTime = moveDuration + saveTime;
             _totalMoveDuration = moveDuration * 2f;
             _isPassedCenter = false;
-
-            if (_arrowType == ArrowType.Click)
-                _traceImage.gameObject.SetActive(false);
             
+            // Начальная позиция (левый край)
+            _holder.anchoredPosition = new Vector2(-_holder.sizeDelta.x, 0f);
+            
+            SetSizeHolder(arrowType);
             SetDirectionImage(direction);
             SetColorsFromDirection(direction);
             gameObject.name = $"Arrow_{arrowType}_{direction}";
-
-            // Начальная позиция (левый край)
-            _holder.anchoredPosition = new Vector2(-_holder.sizeDelta.x, 0f);
+            
             gameObject.SetActive(true);
 
             StopMove();
@@ -120,6 +119,23 @@ namespace Game.Scripts.GamePlay.Arrow
                 StopCoroutine(_moveCoroutine);
         }
 
+        private void SetSizeHolder(ArrowType arrowType)
+        {
+            _traceImage.gameObject.SetActive(arrowType == ArrowType.Hold);
+            if (arrowType != ArrowType.Hold)
+                return;
+
+            // 1920 + 100 /2 / 5
+            float time = Mathf.Abs(_holdEndTime - _holdStartTime);
+            float speed = (1920f + _holder.sizeDelta.x) / 2f / _remainingTime;
+            float weight = speed * time;
+            
+            RectTransform rect = _traceImage.rectTransform;
+            Vector2 position = rect.anchoredPosition;
+            rect.sizeDelta = new Vector2(weight, rect.sizeDelta.y);
+            rect.anchoredPosition = position;
+        }
+        
         private IEnumerator MoveCoroutine()
         {
             float startRemaining = _totalMoveDuration;

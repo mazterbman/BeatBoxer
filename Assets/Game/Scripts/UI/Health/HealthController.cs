@@ -15,6 +15,7 @@ namespace Game.Scripts.UI.Health
         private List<HeartUiController> _controllers;
 
         private int _countHeart = 5;
+        private bool _isGodMode = false;
 
         private void Awake()
         {
@@ -38,7 +39,7 @@ namespace Game.Scripts.UI.Health
         [ContextMenu("Add Heart")]
         public void Add()
         {
-            if (_countHeart >= _controllers.Count)
+            if (_countHeart >= _controllers.Count || _isGodMode)
             {
                 return;
             }
@@ -51,7 +52,7 @@ namespace Game.Scripts.UI.Health
         [ContextMenu("Remove Heart")]
         public void Remove()
         {
-            if (_countHeart <= 0)
+            if (_countHeart <= 0  || _isGodMode)
             {
                 return;
             }
@@ -76,6 +77,11 @@ namespace Game.Scripts.UI.Health
         private void Added()
         {
             _controllers[_countHeart - 1].Show();
+        }
+
+        public void SetGodMode(bool godMode)
+        {
+            _isGodMode = godMode;
         }
     }
 }

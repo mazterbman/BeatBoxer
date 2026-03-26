@@ -1068,7 +1068,7 @@ MonoBehaviour:
   _centerUiController: {fileID: 847975391}
   _playerInput: {fileID: 599435116}
   _messageSettings: {fileID: 11400000, guid: 915da0d72ff39ea49aa4c48bbb88b1e0, type: 2}
-  _timingSettings: {fileID: 11400000, guid: c7876c25575b54f408a796a2b5dbd848, type: 2}
+  _timingSettings: {fileID: 11400000, guid: ddd1d74d252499b4ea9f1d4ccd3337b5, type: 2}
   _messagePoolSettings:
     Prefab: {fileID: 4327300213240416076, guid: f599be2cedf052b41a1fceecfd828c7a, type: 3}
     Parent: {fileID: 907648600}
@@ -1081,6 +1081,7 @@ MonoBehaviour:
   _timeToCenter: 5
   _arrowPrefab: {fileID: 6352999643956857630, guid: bd53e1a56b3e98841901b254d4f627bd, type: 3}
   _arrowsParent: {fileID: 422564431}
+  _godMode: 1
 --- !u!1001 &677780687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2116,7 +2117,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.36
   m_Pitch: 1
   Loop: 0
   Mute: 0

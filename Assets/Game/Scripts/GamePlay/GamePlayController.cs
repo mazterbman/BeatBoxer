@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Game.Scripts.GamePlay.Arrow;
 using Game.Scripts.GamePlay.Message;
 using Game.Scripts.ScriptableObject;
@@ -43,7 +44,10 @@ namespace Game.Scripts.GamePlay
         // Префаб стрелки (необходимо задать в инспекторе)
         [Header("Arrow Prefab")]
         [SerializeField] private ArrowController _arrowPrefab;
-        [SerializeField] private Transform _arrowsParent; 
+        [SerializeField] private Transform _arrowsParent;
+
+        [Header("Debug")] 
+        [SerializeField] private bool _godMode = false;
 
         private Coroutine _gameCoroutine;
         private List<ArrowController> _activeArrows = new List<ArrowController>();
@@ -102,6 +106,11 @@ namespace Game.Scripts.GamePlay
             _healthController.OnChanged -= CheckEnd;
             if (_gameCoroutine != null) StopCoroutine(_gameCoroutine);
             RemoveInputActions();
+        }
+
+        private void OnValidate()
+        {
+            _healthController.SetGodMode(_godMode);
         }
 
         public void StartGame()
@@ -168,13 +177,21 @@ namespace Game.Scripts.GamePlay
 
         private IEnumerator GameCoroutine()
         {
+            // Добавляем задержку перед стартом, если нужно
+            float startDelay = Mathf.Max(0, -_adjustedTimingValues[0].TimeStart);
+            if (startDelay > 0)
+            {
+                Debug.Log($"[GamePlayController] Delaying start by {startDelay:F2}s to accommodate early spawn");
+                yield return new WaitForSeconds(startDelay);
+            }
+            
             _audioSource.clip = _timingSettings.AudioClip;
             _audioSource.Play();
 
             yield return new WaitUntil(() => _audioSource.isPlaying);
 
             int nextIndex = 0;
-            float endTime = _adjustedTimingValues.Count > 0 ? _adjustedTimingValues[_adjustedTimingValues.Count - 1].TimeStart : 0f;
+            float endTime = _adjustedTimingValues.Count > 0 ? _adjustedTimingValues.Last().TimeStart : 0f;
 
             while (_audioSource.time < endTime && _isGameActive)
             {
@@ -203,18 +220,18 @@ namespace Game.Scripts.GamePlay
         // Спавн стрелки без пула
         private void SpawnArrow(TimingValue adjustedTiming, TimingValue originalTiming)
         {
-            // idealTime – момент достижения центра в аудиовремени
+            // idealTime – момент достижения центра в аудиовремени (оригинальное время)
             float idealTime = originalTiming.TimeStart + _timeToCenter;
-
+    
             ArrowController arrow = Instantiate(_arrowPrefab,
                 _arrowsParent ? _arrowsParent : transform);
-            arrow.Show(this,originalTiming.ArrowType,
+    
+            // Используем adjustedTiming для времени старта и конца удержания
+            arrow.Show(this, originalTiming.ArrowType,
                 originalTiming.ArrowDirection, _timeToCenter, idealTime, 
-                originalTiming.TimeStart, originalTiming.TimeEnd, _saveTime);
-
-            _activeArrows.Add(arrow);
-
-            Debug.Log($"[GamePlayController] Spawned {originalTiming.ArrowType} {originalTiming.ArrowDirection} at audio time {_audioSource.time:F2}, ideal {idealTime:F2}");
+                adjustedTiming.TimeStart,
+                adjustedTiming.TimeEnd,
+                _saveTime);
         }
 
         private void OnArrowPressed(ArrowDirection direction)
