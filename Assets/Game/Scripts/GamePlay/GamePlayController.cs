@@ -211,7 +211,7 @@ namespace Game.Scripts.GamePlay
                 yield return null;
             }
 
-            while (_activeArrows.Count > 0 && _isGameActive)
+            while (_isGameActive && _audioSource.isPlaying)
                 yield return null;
 
             EndGame();
