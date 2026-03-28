@@ -79,7 +79,7 @@ namespace Game.Scripts.GamePlay
             {
                 var copy = new TimingValue
                 {
-                    TimeStart = tv.TimeStart - _timeToCenter,
+                    TimeStart = Mathf.Max(tv.TimeStart - _timeToCenter, 0),
                     TimeEnd = tv.TimeEnd > 0 ? tv.TimeEnd - _timeToCenter : 0,
                     ArrowType = tv.ArrowType,
                     ArrowDirection = tv.ArrowDirection
@@ -198,7 +198,7 @@ namespace Game.Scripts.GamePlay
                 if (nextIndex < _adjustedTimingValues.Count &&
                     _adjustedTimingValues[nextIndex].TimeStart <= _audioSource.time)
                 {
-                    SpawnArrow(_adjustedTimingValues[nextIndex], _originalTimingValues[nextIndex]);
+                    SpawnArrow(_adjustedTimingValues[nextIndex], _originalTimingValues[nextIndex], nextIndex);
                     nextIndex++;
                 }
                 yield return null;
@@ -206,19 +206,19 @@ namespace Game.Scripts.GamePlay
 
             while (nextIndex < _adjustedTimingValues.Count && _isGameActive)
             {
-                SpawnArrow(_adjustedTimingValues[nextIndex], _originalTimingValues[nextIndex]);
+                SpawnArrow(_adjustedTimingValues[nextIndex], _originalTimingValues[nextIndex], nextIndex);
                 nextIndex++;
                 yield return null;
             }
 
-            while (_isGameActive && _audioSource.isPlaying)
+            while (_isGameActive && _audioSource.isPlaying && _activeArrows.Count > 0 && _inActiveArrows. Count > 0)
                 yield return null;
 
             EndGame();
         }
 
         // Спавн стрелки без пула
-        private void SpawnArrow(TimingValue adjustedTiming, TimingValue originalTiming)
+        private void SpawnArrow(TimingValue adjustedTiming, TimingValue originalTiming, int index)
         {
             // idealTime – момент достижения центра в аудиовремени (оригинальное время)
             float idealTime = originalTiming.TimeStart + _timeToCenter;
@@ -231,7 +231,7 @@ namespace Game.Scripts.GamePlay
                 originalTiming.ArrowDirection, _timeToCenter, idealTime, 
                 adjustedTiming.TimeStart,
                 adjustedTiming.TimeEnd,
-                _saveTime);
+                _saveTime, index);
         }
 
         private void OnArrowPressed(ArrowDirection direction)

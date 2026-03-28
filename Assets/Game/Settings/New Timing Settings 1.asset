@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a4b5e5256ed1047a062ae29637ac98, type: 3}
   m_Name: New Timing Settings 1
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.ScriptableObject.TimingSettings
-  AudioClip: {fileID: 8300000, guid: 3e7d1f12722fabb46b8bd5be082026a4, type: 3}
+  AudioClip: {fileID: 8300000, guid: 083c8a78406974c4c85451804ba28f48, type: 3}
   TimingValues:
   - TimeStart: 3
     TimeEnd: 8

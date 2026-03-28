@@ -84,7 +84,8 @@ namespace Game.Scripts.GamePlay.Arrow
 
         public void Show(GamePlayController controller,ArrowType arrowType, 
             ArrowDirection direction, float moveDuration, float idealTime,
-            float holdStart = 0f, float holdEnd = 0f, float saveTime = 0f)
+            float holdStart = 0f, float holdEnd = 0f, float saveTime = 0f,
+            int indexName = 0)
         {
             _controller = controller;
             
@@ -105,7 +106,7 @@ namespace Game.Scripts.GamePlay.Arrow
             SetSizeHolder(arrowType);
             SetDirectionImage(direction);
             SetColorsFromDirection(direction);
-            gameObject.name = $"Arrow_{arrowType}_{direction}";
+            gameObject.name = $"{indexName}_Arrow_{arrowType}_{direction}";
             
             gameObject.SetActive(true);
 
@@ -124,15 +125,14 @@ namespace Game.Scripts.GamePlay.Arrow
             _traceImage.gameObject.SetActive(arrowType == ArrowType.Hold);
             if (arrowType != ArrowType.Hold)
                 return;
-
-            // 1920 + 100 /2 / 5
+            
             float time = Mathf.Abs(_holdEndTime - _holdStartTime);
             float speed = (1920f + _holder.sizeDelta.x) / 2f / _remainingTime;
-            float weight = speed * time;
+            float wight = speed * time;
             
             RectTransform rect = _traceImage.rectTransform;
             Vector2 position = rect.anchoredPosition;
-            rect.sizeDelta = new Vector2(weight, rect.sizeDelta.y);
+            rect.sizeDelta = new Vector2(wight, rect.sizeDelta.y);
             rect.anchoredPosition = position;
         }
         
