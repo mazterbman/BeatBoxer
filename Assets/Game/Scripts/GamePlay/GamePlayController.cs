@@ -62,6 +62,9 @@ namespace Game.Scripts.GamePlay
         private bool _wasInteract = false;
         private bool _inputActionsAdded;
 
+        private static readonly int _normalBonus = 20;
+        private static readonly int _perfectBonus = 100;
+
         private void Start()
         {
             if (!_timingSettings || !_messageSettings || !_arrowPrefab)
@@ -120,6 +123,7 @@ namespace Game.Scripts.GamePlay
 
             _healthController.ResetHealth();
             _comboUiController.ResetCombo();
+            _scoreUiController.SetMaxScore(_adjustedTimingValues.Count * _perfectBonus);
             _scoreUiController.ResetScore();
             _ratingController.SetRating(1);
 
@@ -201,6 +205,8 @@ namespace Game.Scripts.GamePlay
                     SpawnArrow(_adjustedTimingValues[nextIndex], _originalTimingValues[nextIndex], nextIndex);
                     nextIndex++;
                 }
+                
+                _scoreUiController.SetMaxScore(nextIndex * _perfectBonus);
                 yield return null;
             }
 
@@ -226,6 +232,7 @@ namespace Game.Scripts.GamePlay
             ArrowController arrow = Instantiate(_arrowPrefab,
                 _arrowsParent ? _arrowsParent : transform);
     
+            _activeArrows.Add(arrow);
             // Используем adjustedTiming для времени старта и конца удержания
             arrow.Show(this, originalTiming.ArrowType,
                 originalTiming.ArrowDirection, _timeToCenter, idealTime, 
@@ -243,7 +250,6 @@ namespace Game.Scripts.GamePlay
             }
 
             ArrowController arrow = _activeArrows[0];
-
             if (arrow.RemainingTime > _normalWindow + _saveTime)
             {
                 Process(MessageType.Early);
@@ -256,9 +262,7 @@ namespace Game.Scripts.GamePlay
                 ProcessHit(arrow, MessageType.Miss);
                 return;
             }
-
-            float currentTime = _audioSource.time;
-
+            
             // Для Click-стрелок
             if (arrow.ArrowType == ArrowType.Click)
             {
@@ -269,13 +273,14 @@ namespace Game.Scripts.GamePlay
                     result = MessageType.Normal;
                 else
                     result = MessageType.Late;    // нажали позже центра
-
+                
                 ProcessHit(arrow, result);
                 return;
             }
             // Для Hold-стрелок
             else
             {
+                float currentTime = _audioSource.time;
                 // Проверяем, что нажатие произошло в интервале удержания
                 if (currentTime >= arrow.HoldStartTime && currentTime <= arrow.HoldEndTime)
                 {
@@ -324,6 +329,7 @@ namespace Game.Scripts.GamePlay
         private void Process(MessageType result)
         {
             _wasInteract = true;
+            
             SpawnMessage(result);
             UpdateSystem(result);
             
@@ -331,7 +337,11 @@ namespace Game.Scripts.GamePlay
             _comboUiController.Shake();
             _healthController.ShakeAll();
             _ratingController.ShakeAll();
-            _centerUiController.Clk();
+            
+            if (result is MessageType.Perfect or MessageType.Normal)
+            {
+                _centerUiController.Clk();
+            }
         }
 
         private void UpdateSystem(MessageType result)
@@ -343,18 +353,21 @@ namespace Game.Scripts.GamePlay
                 case MessageType.Miss:
                     _healthController.Remove();
                     _comboUiController.ResetCombo();
+                    _scoreUiController.AddScore(_normalBonus * -1);
                     break;
                 case MessageType.Perfect:
                     _healthController.Add();
                     _comboUiController.AddCombo();
-                    _scoreUiController.AddScore(100);
+                    _scoreUiController.AddScore(_perfectBonus);
                     break;
                 case MessageType.Normal:
                     _healthController.Add();
                     _comboUiController.AddCombo();
-                    _scoreUiController.AddScore(20);
+                    _scoreUiController.AddScore(_normalBonus);
                     break;
             }
+            
+            _ratingController.SetRating(_scoreUiController.PercentOfMax);
         }
 
         private void CheckEnd(int health)

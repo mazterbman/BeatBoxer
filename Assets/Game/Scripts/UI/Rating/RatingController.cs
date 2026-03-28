@@ -7,8 +7,6 @@ namespace Game.Scripts.UI.Rating
     public class RatingController : MonoBehaviour
     {
         public UnityAction<int> OnChanged;
-        public UnityAction OnAdd;
-        public UnityAction OnRemove;
         
         [Header("Reference")] [SerializeField] 
         private List<RatingUiController> _controllers;
@@ -18,14 +16,7 @@ namespace Game.Scripts.UI.Rating
         private void Awake()
         {
             _countRating = _controllers.Count;
-            OnAdd += Added;
-            OnRemove += Removed;
-        }
-
-        private void OnDestroy()
-        {
-            OnAdd -= Added;
-            OnRemove -= Removed;
+            SetRating(0);
         }
 
         [ContextMenu("ShakeAll")]
@@ -39,28 +30,17 @@ namespace Game.Scripts.UI.Rating
             percent = Mathf.Clamp01(percent);
             int value = Mathf.Clamp(Mathf.RoundToInt(percent * _controllers.Count), 0, _controllers.Count);
             
-            if (value > _countRating)
+            for (int i = 0; i < value; i++)
             {
-                _countRating = value;
-                OnAdd?.Invoke();
-                OnChanged?.Invoke(_countRating);
+                _controllers[i].Show();
             }
-            else if (value < _countRating)
+            for (int i = value; i < _controllers.Count; i++)
             {
-                _countRating = value;
-                OnRemove?.Invoke();
-                OnChanged?.Invoke(_countRating);
+                _controllers[i].Hide();
             }
-        }
-
-        private void Removed()
-        {
-            _controllers[_countRating].Hide();
-        }
-
-        private void Added()
-        {
-            _controllers[_countRating - 1].Show();
+            
+            _countRating = value;
+            OnChanged?.Invoke(_countRating);
         }
     }
 }

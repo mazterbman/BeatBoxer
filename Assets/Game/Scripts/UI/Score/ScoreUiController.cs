@@ -20,6 +20,10 @@ namespace Game.Scripts.UI.Score
         private int _score;
         public int Score => _score;
 
+        private int _maxScore;
+        public int MaxScore => _maxScore;
+        public float PercentOfMax => (float)_score / (float)_maxScore;
+
         private void Awake()
         {
             _loadedShakeSettings = _shakeSettings.Clone();
@@ -51,6 +55,12 @@ namespace Game.Scripts.UI.Score
         {
             _score = 0;
             UpdateText();
+        }
+
+        public void SetMaxScore(int value)
+        {
+            _maxScore = value;
+            _score = Mathf.Clamp(_score,0, _maxScore);
         }
 
         private void UpdateText()
