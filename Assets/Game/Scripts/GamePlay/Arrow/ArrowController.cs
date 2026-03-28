@@ -22,17 +22,20 @@ namespace Game.Scripts.GamePlay.Arrow
         [SerializeField] private ColorsArrowSetting _colorsArrowSetting;
 
         private Coroutine _moveCoroutine;
+        private Coroutine _holdCoroutine;
         private GamePlayController _controller;
 
         // Timing data
         private ColorsArrowSetting.ColorArrow _colorArrowSelected;
         private ArrowType _arrowType;
         private ArrowDirection _arrowDirection;
+        private float _holdTimeLeft;
         private float _idealTime;
         private float _holdStartTime;
         private float _holdEndTime;
         private bool _isHeld;
         private bool _isPassedCenter;
+        private bool _wasPressed;
 
         // Movement state
         private float _remainingTime;
@@ -45,6 +48,7 @@ namespace Game.Scripts.GamePlay.Arrow
         public float IdealTime => _idealTime;
         public float HoldStartTime => _holdStartTime;
         public float HoldEndTime => _holdEndTime;
+        public float HoldTimeLeft => _holdTimeLeft;
         public bool IsHeld => _isHeld;
         public bool IsPassedCenter => _isPassedCenter;
 
@@ -54,7 +58,9 @@ namespace Game.Scripts.GamePlay.Arrow
         /// </summary>
         public void Hide()
         {
-            if (_isPassedCenter) return;
+            if (_isPassedCenter || _wasPressed) return;
+            
+            _wasPressed = true;
             OnReachCenter();
         }
         
@@ -72,8 +78,10 @@ namespace Game.Scripts.GamePlay.Arrow
 
         public void OnHoldPress()
         {
-            if (_arrowType == ArrowType.Hold && !_isHeld)
-                _isHeld = true;
+            if (_arrowType != ArrowType.Hold || _isHeld) return;
+            
+            _isHeld = true;
+            Hide();
         }
 
         public void OnHoldRelease()
@@ -148,18 +156,12 @@ namespace Game.Scripts.GamePlay.Arrow
                 _totalMoveDuration -= Time.deltaTime;
                 float t = 1f - (_totalMoveDuration / startRemaining);
                 _holder.anchoredPosition = Vector2.Lerp(startPos, targetPos, t);
+                _remainingTime -= Time.deltaTime;
 
                 // Проверяем достижение центра (x = 960)
                 if (!_isPassedCenter && _holder.anchoredPosition.x >= 960f)
                 {
-                    _remainingTime = -1;
-                    _isPassedCenter = true;
-                    _controller.ProcessHit(this, GamePlayController.MessageType.Late);
                     OnReachCenter();
-                }
-                else
-                {
-                    _remainingTime -= Time.deltaTime;
                 }
 
                 yield return null;
@@ -173,8 +175,31 @@ namespace Game.Scripts.GamePlay.Arrow
         {
             _isPassedCenter = true;
             _lightImage.enabled = false;
-            SetColors(_colorArrowSelected.Color * _colorArrowSelected.ColorMultiplay);
+
+            if (!_wasPressed)
+            {
+                _controller.ProcessHit(this, GamePlayController.MessageType.Late);
+            }
+            else if (_arrowType == ArrowType.Hold)
+            {
+                _holdCoroutine = StartCoroutine(HoldIE());
+            }
+            
             // Можно также запустить анимацию или звуковой эффект
+            SetColors(_colorArrowSelected.Color * _colorArrowSelected.ColorMultiplay);
+        }
+
+        private IEnumerator HoldIE()
+        {
+            _holdTimeLeft = Mathf.Max(_holdEndTime - _holdStartTime - _remainingTime * -1, 0);
+            while (_holdTimeLeft > 0 && _isHeld)
+            {
+                _holdTimeLeft -= Time.deltaTime;
+                yield return null;
+            }
+
+            _holdTimeLeft = -1;
+            _holdCoroutine = null;
         }
 
         private void SetDirectionImage(ArrowDirection direction)

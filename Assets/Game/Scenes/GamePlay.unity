@@ -413,7 +413,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 60, y: 23.154625}
+  m_SizeDelta: {x: 120, y: 23.154625}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &223844265
 MonoBehaviour:
@@ -1068,7 +1068,7 @@ MonoBehaviour:
   _centerUiController: {fileID: 847975391}
   _playerInput: {fileID: 599435116}
   _messageSettings: {fileID: 11400000, guid: 915da0d72ff39ea49aa4c48bbb88b1e0, type: 2}
-  _timingSettings: {fileID: 11400000, guid: c7876c25575b54f408a796a2b5dbd848, type: 2}
+  _timingSettings: {fileID: 11400000, guid: aeabf3d66fa831f4799748538ff85951, type: 2}
   _messagePoolSettings:
     Prefab: {fileID: 4327300213240416076, guid: f599be2cedf052b41a1fceecfd828c7a, type: 3}
     Parent: {fileID: 907648600}
@@ -1081,7 +1081,7 @@ MonoBehaviour:
   _timeToCenter: 5
   _arrowPrefab: {fileID: 6352999643956857630, guid: bd53e1a56b3e98841901b254d4f627bd, type: 3}
   _arrowsParent: {fileID: 422564431}
-  _godMode: 1
+  _godMode: 0
 --- !u!1001 &677780687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2336,7 +2336,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 179.1, y: 46.30357}
+  m_SizeDelta: {x: 250, y: 46.30357}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1309830251
 MonoBehaviour:

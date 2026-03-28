@@ -153,7 +153,7 @@ namespace Game.Scripts.GamePlay
         
         public void ProcessHit(ArrowController arrow, MessageType result)
         {
-            if (!arrow) 
+            if (!arrow || !_activeArrows.Contains(arrow)) 
                 return;
             
             _activeArrows.Remove(arrow);
@@ -217,7 +217,7 @@ namespace Game.Scripts.GamePlay
                 yield return null;
             }
 
-            while (_isGameActive && _audioSource.isPlaying && _activeArrows.Count > 0 && _inActiveArrows. Count > 0)
+            while (_isGameActive && (_activeArrows.Count > 0 || _inActiveArrows.Count > 0))
                 yield return null;
 
             EndGame();
@@ -263,36 +263,21 @@ namespace Game.Scripts.GamePlay
                 return;
             }
             
-            // Для Click-стрелок
-            if (arrow.ArrowType == ArrowType.Click)
+            MessageType result;
+            if (arrow.RemainingTime <= _perfectWindow + _saveTime)
+                result = MessageType.Perfect;
+            else if (arrow.RemainingTime <= _normalWindow + _saveTime)
+                result = MessageType.Normal;
+            else
+                result = MessageType.Late;    // нажали позже центра
+
+            if (result != MessageType.Late && arrow.ArrowType == ArrowType.Hold)
             {
-                MessageType result;
-                if (arrow.RemainingTime <= _perfectWindow + _saveTime)
-                    result = MessageType.Perfect;
-                else if (arrow.RemainingTime <= _normalWindow + _saveTime)
-                    result = MessageType.Normal;
-                else
-                    result = MessageType.Late;    // нажали позже центра
-                
-                ProcessHit(arrow, result);
+                arrow.OnHoldPress();
                 return;
             }
-            // Для Hold-стрелок
-            else
-            {
-                float currentTime = _audioSource.time;
-                // Проверяем, что нажатие произошло в интервале удержания
-                if (currentTime >= arrow.HoldStartTime && currentTime <= arrow.HoldEndTime)
-                {
-                    arrow.OnHoldPress();
-                }
-                // Если вне интервала – игнорируем (промах будет при отпускании или таймауте)
-                // Можно сразу считать Miss, если стрелка уже прошла центр
-                else
-                {
-                    ProcessHit(arrow, MessageType.Miss);
-                }
-            }
+                
+            ProcessHit(arrow, result);
         }
 
         private void OnArrowReleased(ArrowDirection direction)
@@ -318,9 +303,12 @@ namespace Game.Scripts.GamePlay
 
             if (arrow.IsHeld)
             {
-                float releaseTime = _audioSource.time;
-                bool success = releaseTime >= arrow.HoldStartTime && releaseTime <= arrow.HoldEndTime;
-                ProcessHit(arrow, success ? MessageType.Perfect : MessageType.Miss);
+                MessageType result;
+                if (arrow.HoldTimeLeft <= _perfectWindow + _saveTime)
+                    result = MessageType.Perfect;
+                else result = MessageType.Normal;
+                
+                ProcessHit(arrow, result);
                 arrow.OnHoldRelease();
                 return;
             }
