@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -33,7 +34,7 @@ namespace Game.Scripts.UI.MainMenuUI
         private void Awake()
         {
             _hoverOrigin = transform.localScale;
-            _originColorText = _tmpText.color;
+            if (_tmpText) _originColorText = _tmpText.color;
         }
 
         public void HoverStart()
@@ -89,12 +90,12 @@ namespace Game.Scripts.UI.MainMenuUI
                 timeNow += Time.deltaTime * multi;
                 float valueCurve = _hoverCurve.Evaluate(timeNow / _timeHover);
                 transform.localScale = Vector3.Lerp(_hoverOrigin, _endScaleHover, valueCurve);
-                _tmpText.color = Color.Lerp(_originColorText, endColorText, valueCurve);
+                if (_tmpText) _tmpText.color = Color.Lerp(_originColorText, endColorText, valueCurve);
 
                 if (inverse && timeNow <= 0)
                 {
                     transform.localScale = _hoverOrigin;
-                    _tmpText.color = _originColorText;
+                    if (_tmpText) _tmpText.color = _originColorText;
                     timeNow = 0;
                     break;
                 }
@@ -102,7 +103,7 @@ namespace Game.Scripts.UI.MainMenuUI
                 if (!inverse && timeNow >= _timeHover)
                 {
                     transform.localScale = _endScaleHover;
-                    _tmpText.color = endColorText;
+                    if (_tmpText) _tmpText.color = endColorText;
                     timeNow = 1;
                     break;
                 }

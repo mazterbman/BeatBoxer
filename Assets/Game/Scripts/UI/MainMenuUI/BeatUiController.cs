@@ -12,8 +12,10 @@ namespace Game.Scripts.UI.MainMenuUI
         [Header("Reference")] 
         [SerializeField] private TimingSettings _timingSettings;
         [SerializeField] private Animator _animator;
+        [SerializeField] private AudioSource _audioSource;
 
         private Coroutine _startCoroutine;
+        private bool _needReset = false;
         
         private void Start()
         {
@@ -23,6 +25,29 @@ namespace Game.Scripts.UI.MainMenuUI
                 _startCoroutine = null;
             }
 
+            _needReset = false;
+            _startCoroutine = StartCoroutine(StartIE());
+        }
+
+        private void OnDisable()
+        {
+            if (_startCoroutine != null)
+            {
+                StopCoroutine(_startCoroutine);
+                _startCoroutine = null;
+            }
+        }
+
+        private void OnEnable()
+        {
+            if (!_needReset) return;
+
+            _needReset = false;
+            if (_startCoroutine != null)
+            {
+                StopCoroutine(_startCoroutine);
+                _startCoroutine = null;
+            }
             _startCoroutine = StartCoroutine(StartIE());
         }
 
@@ -32,11 +57,12 @@ namespace Game.Scripts.UI.MainMenuUI
             
             StopCoroutine(_startCoroutine);
             _startCoroutine = null;
+            _needReset = false;
         }
 
         private IEnumerator StartIE()
         {
-            float timePast = 0;
+            float timePast = _audioSource ? _audioSource.time : 0;
             int index = 0;
             while (true)
             {
