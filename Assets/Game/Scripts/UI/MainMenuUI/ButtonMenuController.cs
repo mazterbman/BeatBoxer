@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -6,7 +5,7 @@ using UnityEngine.Events;
 
 namespace Game.Scripts.UI.MainMenuUI
 {
-    public class ButtonController : MonoBehaviour
+    public class ButtonMenuController : MonoBehaviour
     {
         [Header("Reference")] 
         [SerializeField] private AudioSource _source;
