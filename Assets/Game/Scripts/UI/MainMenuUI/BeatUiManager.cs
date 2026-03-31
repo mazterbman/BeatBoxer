@@ -12,16 +12,16 @@ namespace Game.Scripts.UI.MainMenuUI
         public static BeatUiManager Instance { get; private set; }
 
         [Header("Reference")]
-        [SerializeField] private TimingSettings _timingSettings;
+        [SerializeField] private TrackSettings _trackSettings;
         [SerializeField] private AudioSource _sourceBack;
 
         [Header("Settings")] 
         [SerializeField] [Range(0, 2)] private float _timeLerpChangeAudio = 0.25f;
 
-        public TimingSettings TimingSettings => _timingSettings;
+        public TrackSettings TrackSettings => _trackSettings;
         public AudioSource AudioSource => _sourceBack;
 
-        public UnityAction<TimingSettings> OnTimingChanged;
+        public UnityAction<TrackSettings> OnTimingChanged;
 
         private Coroutine _changeTimingsCoroutine;
         
@@ -36,11 +36,11 @@ namespace Game.Scripts.UI.MainMenuUI
             DontDestroyOnLoad(gameObject);
         }
 
-        public void ChangeTimings(TimingSettings timingSettings)
+        public void ChangeTimings(TrackSettings trackSettings)
         {
-            if (timingSettings == _timingSettings)
+            if (trackSettings == _trackSettings)
             {
-                Debug.Log($"Already have {timingSettings}");
+                Debug.Log($"Already have {trackSettings}");
                 return;
             }
             
@@ -50,8 +50,8 @@ namespace Game.Scripts.UI.MainMenuUI
                 _changeTimingsCoroutine = null;
             }
 
-            Debug.Log($"Was changed from {_timingSettings.name} on {timingSettings.name}");
-            _timingSettings = timingSettings;
+            Debug.Log($"Was changed from {_trackSettings.name} on {trackSettings.name}");
+            _trackSettings = trackSettings;
             _changeTimingsCoroutine = StartCoroutine(ChangeTimingsIE());
         }
 
@@ -68,9 +68,9 @@ namespace Game.Scripts.UI.MainMenuUI
             _sourceBack.volume = 0;
             timePast = 0;
             _sourceBack.Stop();
-            _sourceBack.clip = _timingSettings.AudioClip;
+            _sourceBack.clip = _trackSettings.AudioClip;
             _sourceBack.Play();
-            OnTimingChanged?.Invoke(_timingSettings);
+            OnTimingChanged?.Invoke(_trackSettings);
             yield return null;
             
             while (timePast < _timeLerpChangeAudio)

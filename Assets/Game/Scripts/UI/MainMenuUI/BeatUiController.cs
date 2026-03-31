@@ -13,7 +13,7 @@ namespace Game.Scripts.UI.MainMenuUI
         [SerializeField] private Animator _animator;
 
         private BeatUiManager _manager;
-        private TimingSettings _timingSettings;
+        private TrackSettings _trackSettings;
         private AudioSource _audioSource;
         
         private Coroutine _startCoroutine;
@@ -25,7 +25,7 @@ namespace Game.Scripts.UI.MainMenuUI
             _manager.OnTimingChanged += OnTimingChange;
             
             _audioSource = _manager.AudioSource;
-            _timingSettings = _manager.TimingSettings;
+            _trackSettings = _manager.TrackSettings;
             
             RestartPlay();
         }
@@ -60,9 +60,9 @@ namespace Game.Scripts.UI.MainMenuUI
             _needReset = false;
         }
 
-        private void OnTimingChange(TimingSettings timingSettings)
+        private void OnTimingChange(TrackSettings trackSettings)
         {
-            _timingSettings = timingSettings;
+            _trackSettings = trackSettings;
             RestartPlay();
         }
 
@@ -97,13 +97,13 @@ namespace Game.Scripts.UI.MainMenuUI
             while (true)
             {
                 timePast += Time.deltaTime;
-                if (_timingSettings.TimingValues[index].TimeStart <= timePast)
+                if (_trackSettings.TimingValues[index].TimeStart <= timePast)
                 {
                     index++;
                     _animator.SetTrigger(Beat);
                 }
 
-                if (index >= _timingSettings.TimingValues.Count)
+                if (index >= _trackSettings.TimingValues.Count)
                 {
                     index = 0;
                     timePast = 0;

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Track_7_Timing Settings
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.ScriptableObject.TimingSettings
   AudioClip: {fileID: 8300000, guid: c87b92a25140fa84199c85c0ec2c1233, type: 3}
+  NameTrack: 'Track
+
+    7'
   TimingValues:
   - TimeStart: 11.396
     TimeEnd: 0

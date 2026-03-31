@@ -5,12 +5,13 @@ using UnityEngine;
 namespace Game.Scripts.ScriptableObject
 {
     [CreateAssetMenu(fileName = "TimingSettings", menuName = "Scriptable Objects/TimingSettings")]
-    public class TimingSettings : UnityEngine.ScriptableObject  
+    public class TrackSettings : UnityEngine.ScriptableObject  
     {
         public AudioClip AudioClip;
+        [TextArea(2,4)] public string NameTrack;
         public List<TimingValue> TimingValues = new List<TimingValue>();
 
-        public TimingSettings Clone()
+        public TrackSettings Clone()
         {
             var clone = Instantiate(this);
             return clone;

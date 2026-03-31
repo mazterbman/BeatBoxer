@@ -30,7 +30,7 @@ namespace Game.Scripts.GamePlay
 
         [Header("Settings")]
         [SerializeField] private MessageSettings _messageSettings;
-        [SerializeField] private TimingSettings _timingSettings;
+        [SerializeField] private TrackSettings _trackSettings;
         [SerializeField] private PoolSettings _messagePoolSettings; 
 
         [Header("Timing Windows")]
@@ -67,7 +67,7 @@ namespace Game.Scripts.GamePlay
 
         private void Start()
         {
-            if (!_timingSettings || !_messageSettings || !_arrowPrefab)
+            if (!_trackSettings || !_messageSettings || !_arrowPrefab)
             {
                 Debug.LogError($"[GamePlayController] Missing timing, message, or arrow prefab!");
                 return;
@@ -78,7 +78,7 @@ namespace Game.Scripts.GamePlay
 
             // Сдвигаем времена на время движения, чтобы спавнить стрелки раньше
             _adjustedTimingValues = new List<TimingValue>();
-            foreach (var tv in _timingSettings.TimingValues)
+            foreach (var tv in _trackSettings.TimingValues)
             {
                 var copy = new TimingValue
                 {
@@ -90,7 +90,7 @@ namespace Game.Scripts.GamePlay
                 _adjustedTimingValues.Add(copy);
             }
             
-            _originalTimingValues = new List<TimingValue>(_timingSettings.TimingValues);
+            _originalTimingValues = new List<TimingValue>(_trackSettings.TimingValues);
 
             // Создаём пул только для сообщений
             CreateMessagePool();
@@ -189,7 +189,7 @@ namespace Game.Scripts.GamePlay
                 yield return new WaitForSeconds(startDelay);
             }
             
-            _audioSource.clip = _timingSettings.AudioClip;
+            _audioSource.clip = _trackSettings.AudioClip;
             _audioSource.Play();
 
             yield return new WaitUntil(() => _audioSource.isPlaying);

@@ -70,7 +70,7 @@ public class OsuTimingEditor : EditorWindow
             }
             
             // Создаем ScriptableObject
-            TimingSettings settings = ScriptableObject.CreateInstance<TimingSettings>();
+            TrackSettings settings = ScriptableObject.CreateInstance<TrackSettings>();
             settings.TimingValues = timingValues;
             settings.AudioClip = audioClip;
             

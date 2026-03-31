@@ -14,6 +14,7 @@ namespace Game.Scripts.UI.SelectMenu
         [SerializeField] private ButtonMenuController _buttonMenuController;
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private TMP_Text _textNameTrack;
+        [SerializeField] private MenuItemController _menuItemController;
         
         [Space]
         [SerializeField] private GameObject _menu;
@@ -29,17 +30,12 @@ namespace Game.Scripts.UI.SelectMenu
 
         [Space] 
         [SerializeField] private RotateSettings _rotateSettings;
-        
-        [Space] 
-        [SerializeField] private TimingSettings _timingSettings;
-
-        [Header("Settings for Track")]
-        [SerializeField] [TextArea(2,2)] private string _nameTrack;
 
         private Color _originBackColor;
         private Color _originIcoColor;
         private Color _originalNameTrackColor;
 
+        private GamePlaySettings _gamePlaySettings;
         private BeatUiManager _beatUiManager;
         private InfoForMove _infoForMove;
         private RectTransform _content;
@@ -66,11 +62,14 @@ namespace Game.Scripts.UI.SelectMenu
         public StateItem State => _state;
 
         public void Initialize(RectTransform content, VerticalLayoutGroup contentVerticalGroup,
-            SelectItemManager manager, InfoForMove infoForMove)
+            SelectItemManager manager, InfoForMove infoForMove, GamePlaySettings gamePlaySettings)
         {
             if (_isInitialize) return;
-
+            
             _beatUiManager = BeatUiManager.Instance;
+
+            _gamePlaySettings = gamePlaySettings;
+            _menuItemController.Settings = gamePlaySettings;
             
             _originBackColor = _imageBack.color;
             _originIcoColor = _imageIco.color;
@@ -81,12 +80,12 @@ namespace Game.Scripts.UI.SelectMenu
             _content = content;
             _verticalLayoutGroup = contentVerticalGroup;
 
-            _textNameTrack.text = _nameTrack;
+            _textNameTrack.text = _gamePlaySettings.TrackSettings.NameTrack;
 
             if (_indexSelect == 0)
             {
                 _state = StateItem.EndMove;
-                _beatUiManager.ChangeTimings(_timingSettings);
+                _beatUiManager.ChangeTimings(_gamePlaySettings.TrackSettings);
                 StartRotate();
             }
             else
@@ -144,6 +143,7 @@ namespace Game.Scripts.UI.SelectMenu
             {
                 case StateItem.UnSelect:
                     //Need Move
+                    SelectGamePlaySettings();
                     StartMove();
                     StartRotate();
                     break;
@@ -175,6 +175,7 @@ namespace Game.Scripts.UI.SelectMenu
         {
             _menu.gameObject.SetActive(true);
             _manager.UnInteractiveOther(this);
+            _menuItemController.Show();
             _state = StateItem.Open;
         }
 
@@ -184,6 +185,12 @@ namespace Game.Scripts.UI.SelectMenu
             _manager.InteractiveAll();
             _state = StateItem.EndMove;
         }
+
+        private void SelectGamePlaySettings()
+        {
+            _manager.SelectSettings(_indexSelect);
+        }
+        
 
         private void StartMove()
         {
@@ -199,7 +206,7 @@ namespace Game.Scripts.UI.SelectMenu
                 _rotateCoroutine = null;
             }
 
-            _beatUiManager.ChangeTimings(_timingSettings);
+            _beatUiManager.ChangeTimings(_gamePlaySettings.TrackSettings);
             _moveCoroutine = StartCoroutine(MoveIE());
             _state = StateItem.Move;
         }
@@ -211,7 +218,8 @@ namespace Game.Scripts.UI.SelectMenu
                 StopCoroutine(_rotateCoroutine);
                 _rotateCoroutine = null;
             }
-            
+
+            _imageBack.rectTransform.localEulerAngles = Vector3.zero;
             _rotateCoroutine = StartCoroutine(RotateIE());
         }
 

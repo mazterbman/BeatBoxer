@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Game.Scripts.ScriptableObject;
 using Game.Scripts.UI.LoadingCanvas;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,19 +10,39 @@ namespace Game.Scripts.UI.SelectMenu
     public class SelectItemManager : MonoBehaviour
     {
         [Header("Reference")] 
-        [SerializeField] private List<SelectItemController> _controllers;
+        [SerializeField] private List<GamePlaySettings> _settingsList;
         [SerializeField] private RectTransform _content;
         [SerializeField] private VerticalLayoutGroup _verticalLayoutGroup;
+
+        [Space] 
+        [SerializeField] private GameObject _controllerPrefab;
+        [SerializeField] private Transform _parentTransform;
 
         [Header("Settings")] 
         [SerializeField] private InfoForMove _infoForMove;
 
+        [Header("Debug")] 
+        [SerializeField] private GamePlaySettings _selectedSetting;
+
+        private List<SelectItemController> _controllers = new List<SelectItemController>();
+
+        private void Awake()
+        {
+            foreach (var setting in _settingsList)
+            {
+                SelectItemController controller = Instantiate(_controllerPrefab, _parentTransform)
+                    .GetComponent<SelectItemController>();
+                _controllers.Add(controller);
+            }
+        }
+
         private void Start()
         {
-            foreach (var item in _controllers)
+            _selectedSetting = _settingsList[0];
+            for (var i = 0; i < _controllers.Count; i++)
             {
-                item.Initialize(_content, _verticalLayoutGroup, 
-                    this, _infoForMove);
+                _controllers[i].Initialize(_content, _verticalLayoutGroup,
+                    this, _infoForMove, _settingsList[i]);
             }
         }
 
@@ -33,6 +54,17 @@ namespace Game.Scripts.UI.SelectMenu
             }
         }
 
+        public void SelectSettings(int index)
+        {
+            if (index < 0 || index >= _settingsList.Count)
+            {
+                return;
+            }
+            
+            _selectedSetting = _settingsList[index];
+        }
+        
+        
         public void UnInteractiveOther(SelectItemController controller)
         {
             foreach (var item in _controllers)

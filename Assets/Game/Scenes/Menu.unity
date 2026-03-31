@@ -542,51 +542,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114170309}
   m_CullTransparentMesh: 1
---- !u!1 &155453380 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4960654594803487059, guid: 8bad03e90eb5a1b45b5fec9d6c92c808, type: 3}
-  m_PrefabInstance: {fileID: 178126389190268914}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &155453381 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 306197060341670760, guid: 8bad03e90eb5a1b45b5fec9d6c92c808, type: 3}
   m_PrefabInstance: {fileID: 178126389190268914}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &155453382
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155453380}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5ecc29c58d1c7064cac9391209a8434b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &155453383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155453380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6de30daea4a5e7d4687aa33d9e9d2f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.MainMenuUI.BeatUiController
-  _animator: {fileID: 155453382}
 --- !u!1 &168856838
 GameObject:
   m_ObjectHideFlags: 0
@@ -10673,7 +10633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e81010c2acb22447a3f00a8697eea65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.MainMenuUI.BeatUiManager
-  _timingSettings: {fileID: 11400000, guid: aeabf3d66fa831f4799748538ff85951, type: 2}
+  _trackSettings: {fileID: 11400000, guid: aeabf3d66fa831f4799748538ff85951, type: 2}
   _sourceBack: {fileID: 1318431067}
   _timeLerpChangeAudio: 0.25
 --- !u!1 &2042177234
@@ -11566,10 +11526,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2847956190242066220, guid: 8bad03e90eb5a1b45b5fec9d6c92c808, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4257996481204771246, guid: 8bad03e90eb5a1b45b5fec9d6c92c808, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -11654,18 +11610,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6132339344832378865, guid: 8bad03e90eb5a1b45b5fec9d6c92c808, type: 3}
-    - {fileID: 949835730775298749, guid: 8bad03e90eb5a1b45b5fec9d6c92c808, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4960654594803487059, guid: 8bad03e90eb5a1b45b5fec9d6c92c808, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 155453383}
-    - targetCorrespondingSourceObject: {fileID: 4960654594803487059, guid: 8bad03e90eb5a1b45b5fec9d6c92c808, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 155453382}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bad03e90eb5a1b45b5fec9d6c92c808, type: 3}
 --- !u!1001 &1608019036419066978
 PrefabInstance:
