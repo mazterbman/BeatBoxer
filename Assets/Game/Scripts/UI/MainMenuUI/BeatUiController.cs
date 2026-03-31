@@ -10,23 +10,24 @@ namespace Game.Scripts.UI.MainMenuUI
         private static readonly int Beat = Animator.StringToHash("Beat");
 
         [Header("Reference")] 
-        [SerializeField] private TimingSettings _timingSettings;
         [SerializeField] private Animator _animator;
-        [SerializeField] private AudioSource _audioSource;
 
+        private BeatUiManager _manager;
+        private TimingSettings _timingSettings;
+        private AudioSource _audioSource;
+        
         private Coroutine _startCoroutine;
         private bool _needReset = false;
         
         private void Start()
         {
-            if (_startCoroutine != null)
-            {
-                StopCoroutine(_startCoroutine);
-                _startCoroutine = null;
-            }
-
-            _needReset = false;
-            _startCoroutine = StartCoroutine(StartIE());
+            _manager = BeatUiManager.Instance;
+            _manager.OnTimingChanged += OnTimingChange;
+            
+            _audioSource = _manager.AudioSource;
+            _timingSettings = _manager.TimingSettings;
+            
+            RestartPlay();
         }
 
         private void OnDisable()
@@ -42,17 +43,16 @@ namespace Game.Scripts.UI.MainMenuUI
         {
             if (!_needReset) return;
 
-            _needReset = false;
-            if (_startCoroutine != null)
-            {
-                StopCoroutine(_startCoroutine);
-                _startCoroutine = null;
-            }
-            _startCoroutine = StartCoroutine(StartIE());
+            RestartPlay();
         }
 
         private void OnDestroy()
         {
+            if (_manager)
+            {
+                _manager.OnTimingChanged -= OnTimingChange;
+            }
+            
             if (_startCoroutine == null) return;
             
             StopCoroutine(_startCoroutine);
@@ -60,6 +60,36 @@ namespace Game.Scripts.UI.MainMenuUI
             _needReset = false;
         }
 
+        private void OnTimingChange(TimingSettings timingSettings)
+        {
+            _timingSettings = timingSettings;
+            RestartPlay();
+        }
+
+        private void RestartPlay()
+        {
+            if (_startCoroutine != null)
+            {
+                StopCoroutine(_startCoroutine);
+                _startCoroutine = null;
+            }
+
+            if (gameObject.activeInHierarchy)
+            {
+                Play();
+            }
+            else
+            {
+                _needReset = true;
+            }
+        }
+
+        private void Play()
+        {
+            _needReset = false;
+            _startCoroutine = StartCoroutine(StartIE());
+        }
+        
         private IEnumerator StartIE()
         {
             float timePast = _audioSource ? _audioSource.time : 0;

@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using Game.Scripts.ScriptableObject;
 using Game.Scripts.UI.MainMenuUI;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +13,7 @@ namespace Game.Scripts.UI.SelectMenu
         [Header("Reference")] 
         [SerializeField] private ButtonMenuController _buttonMenuController;
         [SerializeField] private CanvasGroup _canvasGroup;
+        [SerializeField] private TMP_Text _textNameTrack;
         
         [Space]
         [SerializeField] private GameObject _menu;
@@ -24,15 +27,27 @@ namespace Game.Scripts.UI.SelectMenu
         [SerializeField] private Color _unSelectColor = Color.gray;
         [SerializeField] private Color _selectColor = Color.white;
 
+        [Space] 
+        [SerializeField] private RotateSettings _rotateSettings;
+        
+        [Space] 
+        [SerializeField] private TimingSettings _timingSettings;
+
+        [Header("Settings for Track")]
+        [SerializeField] [TextArea(2,2)] private string _nameTrack;
+
         private Color _originBackColor;
         private Color _originIcoColor;
-        
+        private Color _originalNameTrackColor;
+
+        private BeatUiManager _beatUiManager;
         private InfoForMove _infoForMove;
         private RectTransform _content;
         private VerticalLayoutGroup _verticalLayoutGroup;
         private RectTransform _rect;
         private SelectItemManager _manager;
 
+        private Coroutine _rotateCoroutine;
         private Coroutine _moveCoroutine;
         private Coroutine _colorCoroutine;
         
@@ -54,19 +69,34 @@ namespace Game.Scripts.UI.SelectMenu
             SelectItemManager manager, InfoForMove infoForMove)
         {
             if (_isInitialize) return;
+
+            _beatUiManager = BeatUiManager.Instance;
             
             _originBackColor = _imageBack.color;
             _originIcoColor = _imageIco.color;
+            _originalNameTrackColor = _textNameTrack.color;
             
             _infoForMove = infoForMove;
             _manager = manager;
             _content = content;
             _verticalLayoutGroup = contentVerticalGroup;
-            
-            _state = _indexSelect == 0 ? StateItem.EndMove : StateItem.UnSelect;
+
+            _textNameTrack.text = _nameTrack;
+
+            if (_indexSelect == 0)
+            {
+                _state = StateItem.EndMove;
+                _beatUiManager.ChangeTimings(_timingSettings);
+                StartRotate();
+            }
+            else
+            {
+                _state = StateItem.UnSelect;
+            }
 
             _imageBack.color = _originBackColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
             _imageIco.color = _originIcoColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
+            _textNameTrack.color = _originalNameTrackColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
             
             _contentYPosition = (_rect.sizeDelta.y + _verticalLayoutGroup.spacing) * _indexSelect;
             gameObject.name = $"Level_{_indexSelect}";
@@ -82,9 +112,16 @@ namespace Game.Scripts.UI.SelectMenu
                 _moveCoroutine = null;
             }
             
+            if (_rotateCoroutine != null)
+            {
+                StopCoroutine(_rotateCoroutine);
+                _rotateCoroutine = null;
+            }
+            
             _state = StateItem.UnSelect;
             _imageBack.color = _originBackColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
             _imageIco.color = _originIcoColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
+            _textNameTrack.color = _originalNameTrackColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
         }
 
         public void UnInteractive()
@@ -108,6 +145,7 @@ namespace Game.Scripts.UI.SelectMenu
                 case StateItem.UnSelect:
                     //Need Move
                     StartMove();
+                    StartRotate();
                     break;
                 
                 case StateItem.EndMove:
@@ -129,6 +167,7 @@ namespace Game.Scripts.UI.SelectMenu
             
             _imageBack.color = _originBackColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
             _imageIco.color = _originIcoColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
+            _textNameTrack.color = _originalNameTrackColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
             _manager.CloseOther(this);
         }
 
@@ -154,8 +193,36 @@ namespace Game.Scripts.UI.SelectMenu
                 _moveCoroutine = null;
             }
 
+            if (_rotateCoroutine != null)
+            {
+                StopCoroutine(_rotateCoroutine);
+                _rotateCoroutine = null;
+            }
+
+            _beatUiManager.ChangeTimings(_timingSettings);
             _moveCoroutine = StartCoroutine(MoveIE());
             _state = StateItem.Move;
+        }
+
+        private void StartRotate()
+        {
+            if (_rotateCoroutine != null)
+            {
+                StopCoroutine(_rotateCoroutine);
+                _rotateCoroutine = null;
+            }
+            
+            _rotateCoroutine = StartCoroutine(RotateIE());
+        }
+
+        private IEnumerator RotateIE()
+        {
+            while (true)
+            {
+                _imageBack.rectTransform.Rotate(_rotateSettings.SelectedTypeRotate == RotateSettings.TypeRotate.Left ? Vector3.forward : Vector3.back,
+                    Time.deltaTime * _rotateSettings.SpeedRotate);
+                yield return null;
+            }
         }
 
         private IEnumerator MoveIE()
@@ -181,5 +248,18 @@ namespace Game.Scripts.UI.SelectMenu
         EndMove,
         Open,
         UnSelect
+    }
+
+    [Serializable]
+    public class RotateSettings
+    {
+        public TypeRotate SelectedTypeRotate = TypeRotate.Left;
+        public float SpeedRotate = 1;
+        
+        public enum TypeRotate
+        {
+            Left = 0,
+            Right,
+        }
     }
 }

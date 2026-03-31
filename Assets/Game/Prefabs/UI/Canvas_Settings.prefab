@@ -705,8 +705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.MainMenuUI.ButtonController
   _source: {fileID: 2701631757092407421}
   _tmpText: {fileID: 0}
-  _hoverClip: {fileID: 8300000, guid: 61385a4d061214d43897213e1966ebb3, type: 3}
-  _clkClip: {fileID: 8300000, guid: ad4e5133eb7d48d4cbf9e75e3591dcd5, type: 3}
+  _buttonAudioSettings: {fileID: 11400000, guid: 94fb73f7ea9d32143a01405fe9236016, type: 2}
   _timeHover: 0.25
   _endScaleHover: {x: 1.2, y: 1.2, z: 1.2}
   _hoverCurve:
@@ -1429,6 +1428,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5593782482467939899, guid: c8ca7519541a5b04fa7c632ad2142e99, type: 3}
+      propertyPath: _buttonAudioSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 94fb73f7ea9d32143a01405fe9236016, type: 2}
     - target: {fileID: 7097954166595317609, guid: c8ca7519541a5b04fa7c632ad2142e99, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1445,6 +1448,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9035333222975568641, guid: c8ca7519541a5b04fa7c632ad2142e99, type: 3}
+      propertyPath: _buttonAudioSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 94fb73f7ea9d32143a01405fe9236016, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

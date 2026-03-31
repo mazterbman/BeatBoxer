@@ -192,8 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.MainMenuUI.ButtonController
   _source: {fileID: 7581677846255732963}
   _tmpText: {fileID: 1232784427465571168}
-  _hoverClip: {fileID: 8300000, guid: 61385a4d061214d43897213e1966ebb3, type: 3}
-  _clkClip: {fileID: 8300000, guid: ad4e5133eb7d48d4cbf9e75e3591dcd5, type: 3}
+  _buttonAudioSettings: {fileID: 11400000, guid: 94fb73f7ea9d32143a01405fe9236016, type: 2}
   _timeHover: 0.25
   _endScaleHover: {x: 1.2, y: 1.2, z: 1.2}
   _hoverCurve:

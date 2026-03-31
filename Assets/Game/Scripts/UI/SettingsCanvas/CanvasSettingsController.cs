@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Game.Scripts.UI.SettingsCanvas
 {
@@ -9,6 +10,7 @@ namespace Game.Scripts.UI.SettingsCanvas
 
         [Header("Reference")] 
         [SerializeField] private Animator _animator;
+        [SerializeField] private InputActionReference _inputAction;
 
         private Coroutine _hideCoroutine;
         

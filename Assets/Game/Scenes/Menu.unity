@@ -586,9 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6de30daea4a5e7d4687aa33d9e9d2f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.MainMenuUI.BeatUiController
-  _timingSettings: {fileID: 11400000, guid: aeabf3d66fa831f4799748538ff85951, type: 2}
   _animator: {fileID: 155453382}
-  _audioSource: {fileID: 0}
 --- !u!1 &168856838
 GameObject:
   m_ObjectHideFlags: 0
@@ -2587,9 +2585,9 @@ Canvas:
   m_GameObject: {fileID: 660558656}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 1162802183}
+  m_PlaneDistance: 10
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -6655,7 +6653,7 @@ GameObject:
   - component: {fileID: 1318431066}
   - component: {fileID: 1318431067}
   m_Layer: 0
-  m_Name: BGmusic
+  m_Name: Music_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6689,7 +6687,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 3e7d1f12722fabb46b8bd5be082026a4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.35
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6946,9 +6944,9 @@ Canvas:
   m_GameObject: {fileID: 1337286511}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 1162802183}
+  m_PlaneDistance: 10
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -8461,9 +8459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6de30daea4a5e7d4687aa33d9e9d2f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.MainMenuUI.BeatUiController
-  _timingSettings: {fileID: 11400000, guid: aeabf3d66fa831f4799748538ff85951, type: 2}
   _animator: {fileID: 1682441027}
-  _audioSource: {fileID: 0}
 --- !u!95 &1682441027
 Animator:
   serializedVersion: 7
@@ -10633,6 +10629,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2035008147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2035008149}
+  - component: {fileID: 2035008150}
+  m_Layer: 0
+  m_Name: BeatManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2035008149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035008147}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2035008150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035008147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e81010c2acb22447a3f00a8697eea65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.MainMenuUI.BeatUiManager
+  _timingSettings: {fileID: 11400000, guid: aeabf3d66fa831f4799748538ff85951, type: 2}
+  _sourceBack: {fileID: 1318431067}
+  _timeLerpChangeAudio: 0.25
 --- !u!1 &2042177234
 GameObject:
   m_ObjectHideFlags: 0
@@ -11872,6 +11915,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4722927859478710558, guid: 8d733a0e6e143c848914b1751f2682f6, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1162802183}
+    - target: {fileID: 4722927859478710558, guid: 8d733a0e6e143c848914b1751f2682f6, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722927859478710558, guid: 8d733a0e6e143c848914b1751f2682f6, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5029623072999238838, guid: 8d733a0e6e143c848914b1751f2682f6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -12514,5 +12569,6 @@ SceneRoots:
   - {fileID: 2023829012}
   - {fileID: 2032352061}
   - {fileID: 509430668}
+  - {fileID: 2035008149}
   - {fileID: 1566629072}
   - {fileID: 5347067333192400673}

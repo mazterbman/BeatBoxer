@@ -1,4 +1,5 @@
 using System.Collections;
+using Game.Scripts.ScriptableObject;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,10 +11,9 @@ namespace Game.Scripts.UI.MainMenuUI
         [Header("Reference")] 
         [SerializeField] private AudioSource _source;
         [SerializeField] private TMP_Text _tmpText;
-        
-        [Header("Audio Settings")]
-        [SerializeField] private AudioClip _hoverClip;
-        [SerializeField] private AudioClip _clkClip;
+
+        [Header("Audio Settings")] 
+        [SerializeField] private ButtonAudioSettings _buttonAudioSettings;
 
         [Header("Hover Settings")]
         [SerializeField] [Range(0,1)] private float _timeHover;
@@ -45,7 +45,7 @@ namespace Game.Scripts.UI.MainMenuUI
             }
             
             _source.Stop();
-            _source.clip = _hoverClip;
+            _source.clip = _buttonAudioSettings.HoverClip;
             _source.Play();
 
             _hoverCoroutine = StartCoroutine(HoverIE(false));
@@ -58,8 +58,6 @@ namespace Game.Scripts.UI.MainMenuUI
                 StopCoroutine(_hoverCoroutine);
                 _hoverCoroutine = null;
             }
-            
-            _source.Stop();
 
             _hoverCoroutine = StartCoroutine(HoverIE(true));
         }
@@ -73,7 +71,7 @@ namespace Game.Scripts.UI.MainMenuUI
             }
             
             _source.Stop();
-            _source.clip = _clkClip;
+            _source.clip = _buttonAudioSettings.ClkClip;
             _source.Play();
             
             OnClkEvent?.Invoke();

@@ -647,7 +647,7 @@ GameObject:
   - component: {fileID: 144003634}
   - component: {fileID: 144003635}
   m_Layer: 0
-  m_Name: BGmusic
+  m_Name: Music_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -681,7 +681,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 3e7d1f12722fabb46b8bd5be082026a4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.35
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1572,6 +1572,16 @@ PrefabInstance:
       propertyPath: _content
       value: 
       objectReference: {fileID: 932203523}
+    - target: {fileID: 660473024487337399, guid: 173636e12514c5642b57646088c4f13f, type: 3}
+      propertyPath: _nameTrack
+      value: 'Track
+
+        5'
+      objectReference: {fileID: 0}
+    - target: {fileID: 660473024487337399, guid: 173636e12514c5642b57646088c4f13f, type: 3}
+      propertyPath: _timingSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 8e889b5ff371f4644b7ca2383cc05bd4, type: 2}
     - target: {fileID: 660473024487337399, guid: 173636e12514c5642b57646088c4f13f, type: 3}
       propertyPath: _verticalLayoutGroup
       value: 
@@ -3173,6 +3183,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563145968}
   m_CullTransparentMesh: 1
+--- !u!1 &611567206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 611567208}
+  - component: {fileID: 611567207}
+  m_Layer: 0
+  m_Name: BeatManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &611567207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611567206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e81010c2acb22447a3f00a8697eea65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.MainMenuUI.BeatUiManager
+  _timingSettings: {fileID: 11400000, guid: aeabf3d66fa831f4799748538ff85951, type: 2}
+  _sourceBack: {fileID: 144003635}
+  _timeLerpChangeAudio: 0.25
+--- !u!4 &611567208
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611567206}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &616380701
 GameObject:
   m_ObjectHideFlags: 0
@@ -4730,9 +4787,9 @@ Canvas:
   m_GameObject: {fileID: 883674575}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 1641429443}
+  m_PlaneDistance: 10
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -5852,8 +5909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.MainMenuUI.ButtonController
   _source: {fileID: 1013317747}
   _tmpText: {fileID: 0}
-  _hoverClip: {fileID: 8300000, guid: 61385a4d061214d43897213e1966ebb3, type: 3}
-  _clkClip: {fileID: 8300000, guid: ad4e5133eb7d48d4cbf9e75e3591dcd5, type: 3}
+  _buttonAudioSettings: {fileID: 11400000, guid: 94fb73f7ea9d32143a01405fe9236016, type: 2}
   _timeHover: 0.25
   _endScaleHover: {x: 1.2, y: 1.2, z: 1.2}
   _hoverCurve:
@@ -5908,9 +5964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6de30daea4a5e7d4687aa33d9e9d2f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.MainMenuUI.BeatUiController
-  _timingSettings: {fileID: 11400000, guid: aeabf3d66fa831f4799748538ff85951, type: 2}
   _animator: {fileID: 1013317753}
-  _audioSource: {fileID: 144003635}
 --- !u!95 &1013317753
 Animator:
   serializedVersion: 7
@@ -7864,9 +7918,9 @@ Canvas:
   m_GameObject: {fileID: 1293325737}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 1641429443}
+  m_PlaneDistance: 10
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -7930,6 +7984,16 @@ PrefabInstance:
       propertyPath: _content
       value: 
       objectReference: {fileID: 932203523}
+    - target: {fileID: 660473024487337399, guid: 173636e12514c5642b57646088c4f13f, type: 3}
+      propertyPath: _nameTrack
+      value: 'Track
+
+        2'
+      objectReference: {fileID: 0}
+    - target: {fileID: 660473024487337399, guid: 173636e12514c5642b57646088c4f13f, type: 3}
+      propertyPath: _timingSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 7fcd0bec4970bc745ab38c81cd67bdc0, type: 2}
     - target: {fileID: 660473024487337399, guid: 173636e12514c5642b57646088c4f13f, type: 3}
       propertyPath: _verticalLayoutGroup
       value: 
@@ -9185,6 +9249,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4722927859478710558, guid: 8d733a0e6e143c848914b1751f2682f6, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1641429443}
+    - target: {fileID: 4722927859478710558, guid: 8d733a0e6e143c848914b1751f2682f6, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722927859478710558, guid: 8d733a0e6e143c848914b1751f2682f6, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5029623072999238838, guid: 8d733a0e6e143c848914b1751f2682f6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9316,6 +9392,10 @@ PrefabInstance:
     - target: {fileID: 6386691895233924600, guid: 8d733a0e6e143c848914b1751f2682f6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6815121466393199917, guid: 8d733a0e6e143c848914b1751f2682f6, type: 3}
+      propertyPath: _inputAction.m_Name
+      value: Input
       objectReference: {fileID: 0}
     - target: {fileID: 6946716603305027735, guid: 8d733a0e6e143c848914b1751f2682f6, type: 3}
       propertyPath: m_AnchorMax.y
@@ -10874,6 +10954,10 @@ PrefabInstance:
       propertyPath: _content
       value: 
       objectReference: {fileID: 932203523}
+    - target: {fileID: 660473024487337399, guid: 173636e12514c5642b57646088c4f13f, type: 3}
+      propertyPath: _timingSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: aeabf3d66fa831f4799748538ff85951, type: 2}
     - target: {fileID: 660473024487337399, guid: 173636e12514c5642b57646088c4f13f, type: 3}
       propertyPath: _verticalLayoutGroup
       value: 
@@ -12637,6 +12721,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 932203523}
     - target: {fileID: 660473024487337399, guid: 173636e12514c5642b57646088c4f13f, type: 3}
+      propertyPath: _nameTrack
+      value: 'Track
+
+        3'
+      objectReference: {fileID: 0}
+    - target: {fileID: 660473024487337399, guid: 173636e12514c5642b57646088c4f13f, type: 3}
+      propertyPath: _timingSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 8bcdc5062444bd74d8676995d9640447, type: 2}
+    - target: {fileID: 660473024487337399, guid: 173636e12514c5642b57646088c4f13f, type: 3}
       propertyPath: _verticalLayoutGroup
       value: 
       objectReference: {fileID: 932203525}
@@ -14044,6 +14138,16 @@ PrefabInstance:
       propertyPath: _content
       value: 
       objectReference: {fileID: 932203523}
+    - target: {fileID: 660473024487337399, guid: 173636e12514c5642b57646088c4f13f, type: 3}
+      propertyPath: _nameTrack
+      value: 'Track
+
+        4'
+      objectReference: {fileID: 0}
+    - target: {fileID: 660473024487337399, guid: 173636e12514c5642b57646088c4f13f, type: 3}
+      propertyPath: _timingSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 0d1250240a070984490db33a8acea2b9, type: 2}
     - target: {fileID: 660473024487337399, guid: 173636e12514c5642b57646088c4f13f, type: 3}
       propertyPath: _verticalLayoutGroup
       value: 
@@ -15997,11 +16101,12 @@ SceneRoots:
   m_Roots:
   - {fileID: 1641429444}
   - {fileID: 893139830}
+  - {fileID: 901449598}
+  - {fileID: 1900410518}
   - {fileID: 439179585}
   - {fileID: 1293325741}
   - {fileID: 883674579}
   - {fileID: 1372709711}
   - {fileID: 842580815}
   - {fileID: 1989960978}
-  - {fileID: 901449598}
-  - {fileID: 1900410518}
+  - {fileID: 611567208}
