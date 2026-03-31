@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Game.Scripts.GamePlay.Arrow;
 using Game.Scripts.GamePlay.Message;
+using Game.Scripts.Global;
 using Game.Scripts.ScriptableObject;
 using Game.Scripts.UI.Center;
 using Game.Scripts.UI.Combo;
@@ -30,8 +31,8 @@ namespace Game.Scripts.GamePlay
 
         [Header("Settings")]
         [SerializeField] private MessageSettings _messageSettings;
-        [SerializeField] private TrackSettings _trackSettings;
-        [SerializeField] private PoolSettings _messagePoolSettings; 
+        [SerializeField] private PoolSettings _messagePoolSettings;
+        [SerializeField] private List<GamePlaySettings> _gamePlaySettingsList;
 
         [Header("Timing Windows")]
         [SerializeField] [Range(0, 0.5f)] private float _perfectWindow = 0.05f;
@@ -40,8 +41,7 @@ namespace Game.Scripts.GamePlay
 
         [Header("Movement")]
         [SerializeField] [Range(0.5f, 10f)] private float _timeToCenter = 5f;
-
-        // Префаб стрелки (необходимо задать в инспекторе)
+        
         [Header("Arrow Prefab")]
         [SerializeField] private ArrowController _arrowPrefab;
         [SerializeField] private Transform _arrowsParent;
@@ -54,6 +54,7 @@ namespace Game.Scripts.GamePlay
         private List<ArrowController> _inActiveArrows = new List<ArrowController>();
         private ObjectPool<MessageController> _messagePool;
 
+        private GamePlaySettings _gamePlaySettings;
         private MessageSettings _loadedMessageSettings;
         private List<TimingValue> _adjustedTimingValues;
         private List<TimingValue> _originalTimingValues;
@@ -67,18 +68,20 @@ namespace Game.Scripts.GamePlay
 
         private void Start()
         {
-            if (!_trackSettings || !_messageSettings || !_arrowPrefab)
+            if (!_gamePlaySettings || !_messageSettings || !_arrowPrefab)
             {
                 Debug.LogError($"[GamePlayController] Missing timing, message, or arrow prefab!");
                 return;
             }
+
+            _gamePlaySettings = _gamePlaySettingsList[SPlayerPrefs.TrackIndexSelected];
             
             _loadedMessageSettings = _messageSettings.Clone();
             RandomizeAllMessages();
 
             // Сдвигаем времена на время движения, чтобы спавнить стрелки раньше
             _adjustedTimingValues = new List<TimingValue>();
-            foreach (var tv in _trackSettings.TimingValues)
+            foreach (var tv in _gamePlaySettings.TrackSettings.TimingValues)
             {
                 var copy = new TimingValue
                 {
@@ -90,7 +93,7 @@ namespace Game.Scripts.GamePlay
                 _adjustedTimingValues.Add(copy);
             }
             
-            _originalTimingValues = new List<TimingValue>(_trackSettings.TimingValues);
+            _originalTimingValues = new List<TimingValue>(_gamePlaySettings.TrackSettings.TimingValues);
 
             // Создаём пул только для сообщений
             CreateMessagePool();
@@ -189,7 +192,7 @@ namespace Game.Scripts.GamePlay
                 yield return new WaitForSeconds(startDelay);
             }
             
-            _audioSource.clip = _trackSettings.AudioClip;
+            _audioSource.clip = _gamePlaySettings.TrackSettings.AudioClip;
             _audioSource.Play();
 
             yield return new WaitUntil(() => _audioSource.isPlaying);

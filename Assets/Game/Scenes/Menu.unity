@@ -10571,7 +10571,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: 272f6d14-89ba-496f-b7ff-215263d3219f
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!4 &2032352061
@@ -11867,14 +11867,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1162802183}
-    - target: {fileID: 4722927859478710558, guid: 8d733a0e6e143c848914b1751f2682f6, type: 3}
-      propertyPath: m_RenderMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722927859478710558, guid: 8d733a0e6e143c848914b1751f2682f6, type: 3}
-      propertyPath: m_PlaneDistance
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 5029623072999238838, guid: 8d733a0e6e143c848914b1751f2682f6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

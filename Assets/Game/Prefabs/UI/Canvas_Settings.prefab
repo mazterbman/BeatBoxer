@@ -66,7 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.05660379, g: 0.05660379, b: 0.05660379, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -407,9 +407,9 @@ Canvas:
   m_GameObject: {fileID: 3826971434591005870}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 10
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -474,6 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.CanvasSettingsController
   _animator: {fileID: 2989982309329790512}
+  _inputAction: {fileID: -2695726088938110700, guid: 5c66f2d20c59cd847856c96e7d394716, type: 3}
 --- !u!95 &2989982309329790512
 Animator:
   serializedVersion: 7

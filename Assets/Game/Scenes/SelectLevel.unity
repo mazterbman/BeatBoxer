@@ -4291,7 +4291,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!4 &901449598
@@ -7959,6 +7959,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6815121466393199917, guid: 8d733a0e6e143c848914b1751f2682f6, type: 3}
+      propertyPath: _inputAction
+      value: 
+      objectReference: {fileID: -2695726088938110700, guid: 5c66f2d20c59cd847856c96e7d394716, type: 3}
     - target: {fileID: 6815121466393199917, guid: 8d733a0e6e143c848914b1751f2682f6, type: 3}
       propertyPath: _inputAction.m_Name
       value: Input

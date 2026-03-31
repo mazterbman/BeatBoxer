@@ -10,11 +10,10 @@ namespace Game.Scripts.Global
         
         [Header("Reference")] 
         [SerializeField] private AudioMixer _audioMixer;
-
-        private const string MainVolume = "MainVolume";
-        private const string UIVolume = "UiVolume";
-        private const string MusicVolume = "MusicVolume";
-        private const string PrefAdd = "Pref";
+        
+        private const string MAIN_VOLUME = "MainVolume";
+        private const string UI_VOLUME = "UiVolume";
+        private const string MUSIC_VOLUME = "MusicVolume";
         
         private void Awake()
         {
@@ -38,9 +37,9 @@ namespace Game.Scripts.Global
         {
             float value = typeVolume switch
             {
-                TypeVolume.Main => PlayerPrefs.GetFloat(MainVolume + PrefAdd, 0),
-                TypeVolume.Music => PlayerPrefs.GetFloat(MusicVolume + PrefAdd, 0),
-                TypeVolume.Ui => PlayerPrefs.GetFloat(UIVolume + PrefAdd, 0),
+                TypeVolume.Main => SPlayerPrefs.MainVolume,
+                TypeVolume.Music => SPlayerPrefs.MusicVolume,
+                TypeVolume.Ui => SPlayerPrefs.UiVolume,
                 _ => 0
             };
 
@@ -55,16 +54,16 @@ namespace Game.Scripts.Global
             switch (type)
             {
                 case TypeVolume.Main:
-                    PlayerPrefs.SetFloat(MainVolume + PrefAdd ,percent);
-                    _audioMixer.SetFloat(MainVolume, value);
+                    SPlayerPrefs.MainVolume = percent;
+                    _audioMixer.SetFloat(MAIN_VOLUME, value);
                     break;
                 case TypeVolume.Music:
-                    PlayerPrefs.SetFloat(MusicVolume + PrefAdd, percent);
-                    _audioMixer.SetFloat(MusicVolume, value);
+                    SPlayerPrefs.MusicVolume = percent;
+                    _audioMixer.SetFloat(MUSIC_VOLUME, value);
                     break;
                 case TypeVolume.Ui:
-                    PlayerPrefs.SetFloat(UIVolume + PrefAdd, percent);
-                    _audioMixer.SetFloat(UIVolume, value);
+                    SPlayerPrefs.UiVolume = percent;
+                    _audioMixer.SetFloat(UI_VOLUME, value);
                     break;
             }
             

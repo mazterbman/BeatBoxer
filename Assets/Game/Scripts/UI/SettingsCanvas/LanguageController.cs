@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Game.Scripts.Global;
 using TMPro;
 using UnityEngine;
 
@@ -14,7 +15,6 @@ namespace Game.Scripts.UI.SettingsCanvas
         [SerializeField] private TypeLanguage _selectedType;
         
         private int _selectedIndex = 0;
-        private static readonly string NamePref = "LanguageIndex";
         private static readonly Dictionary<TypeLanguage, string> LanguageDic = new Dictionary<TypeLanguage, string>()
         {
             {TypeLanguage.English , "English"},
@@ -23,7 +23,7 @@ namespace Game.Scripts.UI.SettingsCanvas
         
         private void Awake()
         {
-            ChangeLanguage(PlayerPrefs.GetInt(NamePref, 0));
+            ChangeLanguage(SPlayerPrefs.LanguageIndex);
         }
 
         public void NextLanguage()
@@ -51,7 +51,7 @@ namespace Game.Scripts.UI.SettingsCanvas
         private void ChangeLanguage(int index)
         {
             _selectedType = (TypeLanguage)index;
-            PlayerPrefs.SetInt(NamePref, index);
+            SPlayerPrefs.LanguageIndex = index;
             if (LanguageDic.TryGetValue(_selectedType, out var value))
             {
                 _languageText.text = value;

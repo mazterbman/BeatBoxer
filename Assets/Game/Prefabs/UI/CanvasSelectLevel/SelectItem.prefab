@@ -458,7 +458,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.7
 --- !u!114 &8342547277937638814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,7 +561,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.7
 --- !u!114 &6779831674059076905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,7 +858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 0.8235294}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -886,6 +886,8 @@ GameObject:
   - component: {fileID: 6841889371102709526}
   - component: {fileID: 6241863468133656191}
   - component: {fileID: 2782853316959419434}
+  - component: {fileID: 4869803958546104637}
+  - component: {fileID: 8741230238287553020}
   m_Layer: 5
   m_Name: ComboText (TMP)
   m_TagString: Untagged
@@ -1012,6 +1014,41 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!95 &4869803958546104637
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2858815138144772734}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 488fd0a9a8f77d449a3505dab79c93fb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8741230238287553020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2858815138144772734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de30daea4a5e7d4687aa33d9e9d2f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.MainMenuUI.BeatUiController
+  _animator: {fileID: 4869803958546104637}
 --- !u!1 &3844135657526103493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,7 +1125,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.7
 --- !u!114 &1503969335922254593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1190,7 +1227,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.7
 --- !u!114 &1341194790163534641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1212,6 +1249,40 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: Game.Scripts.UI.MainMenuUI.ButtonMenuController,
             Assembly-CSharp
           m_MethodName: Clk
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 956076078859950004}
+          m_TargetAssemblyTypeName: Game.Scripts.UI.MainMenuUI.ButtonMenuController,
+            Assembly-CSharp
+          m_MethodName: HoverStart
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 956076078859950004}
+          m_TargetAssemblyTypeName: Game.Scripts.UI.MainMenuUI.ButtonMenuController,
+            Assembly-CSharp
+          m_MethodName: HoverEnd
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1354,7 +1425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.MainMenuUI.ButtonMenuController
   _source: {fileID: 6755031729269871441}
   _tmpText: {fileID: 0}
-  _buttonAudioSettings: {fileID: 0}
+  _buttonAudioSettings: {fileID: 11400000, guid: 94fb73f7ea9d32143a01405fe9236016, type: 2}
   _timeHover: 0.25
   _endScaleHover: {x: 1.1, y: 1.1, z: 1.1}
   _hoverCurve:
@@ -1907,7 +1978,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.43
 --- !u!114 &4788549776125866018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1972,6 +2043,8 @@ GameObject:
   - component: {fileID: 4749152948730335426}
   - component: {fileID: 7736757359355660006}
   - component: {fileID: 5127793235488413920}
+  - component: {fileID: 1931118863676085932}
+  - component: {fileID: 4616799965683754170}
   m_Layer: 5
   m_Name: ScoreText (TMP)
   m_TagString: Untagged
@@ -2098,6 +2171,41 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!95 &1931118863676085932
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7848439589512181910}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 488fd0a9a8f77d449a3505dab79c93fb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4616799965683754170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7848439589512181910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de30daea4a5e7d4687aa33d9e9d2f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.MainMenuUI.BeatUiController
+  _animator: {fileID: 1931118863676085932}
 --- !u!1 &8269869133462007007
 GameObject:
   m_ObjectHideFlags: 0

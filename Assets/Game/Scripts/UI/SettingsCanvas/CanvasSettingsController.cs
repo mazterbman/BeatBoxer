@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,6 +19,19 @@ namespace Game.Scripts.UI.SettingsCanvas
         {
             _hideCoroutine = null;
             gameObject.SetActive(false);
+
+            if (_inputAction)
+            {
+                _inputAction.action.performed += InputPerformed;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (_inputAction)
+            {
+                _inputAction.action.performed -= InputPerformed;
+            }
         }
 
         public void Hide()
@@ -37,6 +51,18 @@ namespace Game.Scripts.UI.SettingsCanvas
             yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
             gameObject.SetActive(false);
             _hideCoroutine = null;
+        }
+
+        private void InputPerformed(InputAction.CallbackContext context)
+        {
+            if (gameObject.activeInHierarchy)
+            {
+                Hide();
+            }
+            else
+            {
+                gameObject.SetActive(true);
+            }
         }
     }
 }

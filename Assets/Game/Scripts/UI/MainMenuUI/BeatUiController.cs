@@ -32,11 +32,11 @@ namespace Game.Scripts.UI.MainMenuUI
 
         private void OnDisable()
         {
-            if (_startCoroutine != null)
-            {
-                StopCoroutine(_startCoroutine);
-                _startCoroutine = null;
-            }
+            if (_startCoroutine == null) return;
+            
+            StopCoroutine(_startCoroutine);
+            _startCoroutine = null;
+            _needReset = true;
         }
 
         private void OnEnable()

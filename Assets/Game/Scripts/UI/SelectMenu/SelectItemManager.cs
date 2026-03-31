@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Game.Scripts.Global;
 using Game.Scripts.ScriptableObject;
 using Game.Scripts.UI.LoadingCanvas;
 using UnityEngine;
@@ -24,6 +25,7 @@ namespace Game.Scripts.UI.SelectMenu
         [Header("Debug")] 
         [SerializeField] private GamePlaySettings _selectedSetting;
 
+        private int _indexSelected = 0;
         private List<SelectItemController> _controllers = new List<SelectItemController>();
 
         private void Awake()
@@ -39,11 +41,14 @@ namespace Game.Scripts.UI.SelectMenu
         private void Start()
         {
             _selectedSetting = _settingsList[0];
+            _indexSelected = 0;
             for (var i = 0; i < _controllers.Count; i++)
             {
                 _controllers[i].Initialize(_content, _verticalLayoutGroup,
                     this, _infoForMove, _settingsList[i]);
             }
+            
+            SPlayerPrefs.TrackIndexSelected = _indexSelected;
         }
 
         public void CloseOther(SelectItemController controller)
@@ -60,8 +65,11 @@ namespace Game.Scripts.UI.SelectMenu
             {
                 return;
             }
-            
+
+            _indexSelected = index;
             _selectedSetting = _settingsList[index];
+            
+            SPlayerPrefs.TrackIndexSelected = _indexSelected;
         }
         
         
