@@ -59,6 +59,7 @@ namespace Game.Scripts.GamePlay
         private List<TimingValue> _adjustedTimingValues;
         private List<TimingValue> _originalTimingValues;
 
+        private bool _isPauseGame;
         private bool _isGameActive;
         private bool _wasInteract = false;
         private bool _inputActionsAdded;
@@ -68,13 +69,13 @@ namespace Game.Scripts.GamePlay
 
         private void Start()
         {
+            _gamePlaySettings = _gamePlaySettingsList[SPlayerPrefs.TrackIndexSelected];
+            
             if (!_gamePlaySettings || !_messageSettings || !_arrowPrefab)
             {
                 Debug.LogError($"[GamePlayController] Missing timing, message, or arrow prefab!");
                 return;
             }
-
-            _gamePlaySettings = _gamePlaySettingsList[SPlayerPrefs.TrackIndexSelected];
             
             _loadedMessageSettings = _messageSettings.Clone();
             RandomizeAllMessages();
@@ -152,6 +153,28 @@ namespace Game.Scripts.GamePlay
             _audioSource.Stop();
             _wasInteract = false;
             Debug.Log($"[GamePlayController] Game ended.");
+        }
+
+        public void PauseGame()
+        {
+            if (_isPauseGame) return;
+            
+            _isPauseGame = true;
+            _audioSource.Pause();
+            
+            _activeArrows.ForEach(arg1 => arg1.IsPaused = true);
+            _inActiveArrows.ForEach(arg1 => arg1.IsPaused = true);
+        }
+
+        public void UnPauseGame()
+        {
+            if (!_isPauseGame) return;
+            
+            _isPauseGame = false;
+            _audioSource.Play();
+            
+            _activeArrows.ForEach(arg1 => arg1.IsPaused = false);
+            _inActiveArrows.ForEach(arg1 => arg1.IsPaused = false);
         }
         
         public void ProcessHit(ArrowController arrow, MessageType result)

@@ -1605,6 +1605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f380f942bbce449ae6741718b5d9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.SelectMenu.MenuItemController
+  _buttonControl: {fileID: 956076078859950004}
   _ratingImageControllers:
   - {fileID: 6820979142027414760}
   - {fileID: 366879189236315166}

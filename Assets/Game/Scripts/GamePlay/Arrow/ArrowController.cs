@@ -51,6 +51,7 @@ namespace Game.Scripts.GamePlay.Arrow
         public float HoldTimeLeft => _holdTimeLeft;
         public bool IsHeld => _isHeld;
         public bool IsPassedCenter => _isPassedCenter;
+        public bool IsPaused;
 
 
         /// <summary>
@@ -153,6 +154,12 @@ namespace Game.Scripts.GamePlay.Arrow
 
             while (_totalMoveDuration > 0f)
             {
+                if (IsPaused)
+                {
+                    yield return null;
+                    continue;
+                }
+                
                 _totalMoveDuration -= Time.deltaTime;
                 float t = 1f - (_totalMoveDuration / startRemaining);
                 _holder.anchoredPosition = Vector2.Lerp(startPos, targetPos, t);
@@ -180,26 +187,9 @@ namespace Game.Scripts.GamePlay.Arrow
             {
                 _controller.ProcessHit(this, GamePlayController.MessageType.Late);
             }
-            else if (_arrowType == ArrowType.Hold)
-            {
-                _holdCoroutine = StartCoroutine(HoldIE());
-            }
             
             // Можно также запустить анимацию или звуковой эффект
             SetColors(_colorArrowSelected.Color * _colorArrowSelected.ColorMultiplay);
-        }
-
-        private IEnumerator HoldIE()
-        {
-            _holdTimeLeft = Mathf.Max(_holdEndTime - _holdStartTime - _remainingTime * -1, 0);
-            while (_holdTimeLeft > 0 && _isHeld)
-            {
-                _holdTimeLeft -= Time.deltaTime;
-                yield return null;
-            }
-
-            _holdTimeLeft = -1;
-            _holdCoroutine = null;
         }
 
         private void SetDirectionImage(ArrowDirection direction)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Game.Scripts.ScriptableObject;
+using Game.Scripts.UI.LoadingCanvas;
 using Game.Scripts.UI.MainMenuUI;
 using TMPro;
 using UnityEngine;

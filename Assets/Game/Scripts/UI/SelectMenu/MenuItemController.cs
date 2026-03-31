@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using Game.Scripts.ScriptableObject;
+using Game.Scripts.UI.LoadingCanvas;
+using Game.Scripts.UI.MainMenuUI;
 using TMPro;
 using UnityEngine;
 
@@ -8,6 +11,7 @@ namespace Game.Scripts.UI.SelectMenu
     public class MenuItemController : MonoBehaviour
     {
         [Header("Reference")] 
+        [SerializeField] private ButtonMenuController _buttonControl;
         [SerializeField] private List<RatingImageController> _ratingImageControllers;
         [SerializeField] private TMP_Text _scoreText;
         [SerializeField] private TMP_Text _comboText;
@@ -17,13 +21,30 @@ namespace Game.Scripts.UI.SelectMenu
         private int _countRating;
         private int _score;
         private int _combo;
-        
+
+        private void Awake()
+        {
+            _buttonControl.OnClkEvent.AddListener(LoadGamePlay);
+        }
+
+        private void OnDestroy()
+        {
+            _buttonControl.OnClkEvent.RemoveListener(LoadGamePlay);
+        }
+
         public void Show()
         {
             LoadPrefs();
             ApplyValues();
         }
 
+        private void LoadGamePlay()
+        {
+            // Load GamePLay
+            LoadingManager.Instance.LoadSceneAsync(2);
+        }
+        
+        
         private void LoadPrefs()
         {
             _countRating = PlayerPrefs.GetInt(Settings.RatingPref, 0);

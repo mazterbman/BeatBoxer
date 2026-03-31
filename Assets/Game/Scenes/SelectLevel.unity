@@ -4278,7 +4278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
   m_Actions: {fileID: -944628639613478452, guid: 5c66f2d20c59cd847856c96e7d394716, type: 3}
   m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
+  m_UIInputModule: {fileID: 1900410516}
   m_DeviceLostEvent:
     m_PersistentCalls:
       m_Calls: []
