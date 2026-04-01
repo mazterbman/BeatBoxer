@@ -2769,6 +2769,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4706276577873284540, guid: 1fb98194bea1eed4e983933e9b1d6b4a, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706276577873284540, guid: 1fb98194bea1eed4e983933e9b1d6b4a, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706276577873284540, guid: 1fb98194bea1eed4e983933e9b1d6b4a, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 332691152}
+    - target: {fileID: 4706276577873284540, guid: 1fb98194bea1eed4e983933e9b1d6b4a, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706276577873284540, guid: 1fb98194bea1eed4e983933e9b1d6b4a, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadSceneAsync
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706276577873284540, guid: 1fb98194bea1eed4e983933e9b1d6b4a, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Game.Scripts.UI.LoadingCanvas.LoadingManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706276577873284540, guid: 1fb98194bea1eed4e983933e9b1d6b4a, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706276577873284540, guid: 1fb98194bea1eed4e983933e9b1d6b4a, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7114,6 +7146,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1440387719}
     m_Modifications:
+    - target: {fileID: 3112803070125695444, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112803070125695444, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112803070125695444, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 332691152}
+    - target: {fileID: 3112803070125695444, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112803070125695444, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetActiveScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112803070125695444, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Game.Scripts.UI.LoadingCanvas.LoadingManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112803070125695444, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3586655837490704827, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
       propertyPath: m_text
       value: Retry
