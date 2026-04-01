@@ -24,8 +24,11 @@ namespace Game.Scripts.GamePlay
 
         private Coroutine _closeCoroutine;
 
+        public bool CanOpenMenu = true;
+
         private void Awake()
         {
+            CanOpenMenu = true;
             _uiMap = _playerInput.actions.FindActionMap("UI");
             _playerMap = _playerInput.actions.FindActionMap("Player");
             
@@ -46,6 +49,8 @@ namespace Game.Scripts.GamePlay
 
         private void Open(InputAction.CallbackContext context)
         {
+            if (!CanOpenMenu) return;
+            
             gameObject.SetActive(true);
             _menuObject.SetActive(true);
             _countDownAnimator.gameObject.SetActive(false);
@@ -55,7 +60,7 @@ namespace Game.Scripts.GamePlay
 
         private void Close()
         {
-            if (_countDownAnimator.gameObject.activeInHierarchy) return;
+            if (_countDownAnimator.gameObject.activeInHierarchy || !CanOpenMenu) return;
             
             if (_closeCoroutine != null)
             {

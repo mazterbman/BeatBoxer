@@ -14,10 +14,12 @@ namespace Game.Scripts.UI.SettingsCanvas
         [SerializeField] private InputActionReference _inputAction;
 
         private Coroutine _hideCoroutine;
+        public bool CanOpenMenu = true;
         
         private void Awake()
         {
             _hideCoroutine = null;
+            CanOpenMenu = true;
             gameObject.SetActive(false);
 
             if (_inputAction)
@@ -36,7 +38,7 @@ namespace Game.Scripts.UI.SettingsCanvas
 
         public void Hide()
         {
-            if (_hideCoroutine != null)
+            if (_hideCoroutine != null || !CanOpenMenu)
             {
                return;
             }
@@ -55,6 +57,8 @@ namespace Game.Scripts.UI.SettingsCanvas
 
         private void InputPerformed(InputAction.CallbackContext context)
         {
+            if (!CanOpenMenu) return;
+            
             if (gameObject.activeInHierarchy)
             {
                 Hide();

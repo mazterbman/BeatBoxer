@@ -48,6 +48,11 @@ namespace Game.Scripts.UI.LoadingCanvas
             ShowAnim();
         }
 
+        public void ResetActiveScene()
+        {
+            LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        }
+
         private void ShowAnim()
         {
             if (!_isHide) return;
@@ -115,14 +120,14 @@ namespace Game.Scripts.UI.LoadingCanvas
             yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
             yield return null;
 
-             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(_indexScene);
-             // Wait until the asynchronous scene fully loads
-             while (!asyncLoad.isDone)
-             {
-                 yield return null;
-             }
-             
-             yield return null;
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(_indexScene);
+            // Wait until the asynchronous scene fully loads
+            while (!asyncLoad.isDone)
+            {
+                yield return null;
+            }
+
+            yield return null;
              HideAnim();
         }
     }

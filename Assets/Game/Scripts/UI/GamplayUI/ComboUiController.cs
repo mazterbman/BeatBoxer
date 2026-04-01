@@ -15,6 +15,9 @@ namespace Game.Scripts.UI.Combo
         
         private ShakeSettings _loadedShakeSettings;
         private Coroutine _shakeCoroutine;
+
+        private int _maxCombo;
+        public int MaxCombo => _maxCombo;
         
         private int _combo;
         public int Combo => _combo;
@@ -27,19 +30,23 @@ namespace Game.Scripts.UI.Combo
             _loadedShakeSettings.SetNormalScale();
             
             _combo = 0;
+            _maxCombo = 0;
             UpdateText();
+            UpdateMaxCombo();
         }
 
         public void AddCombo()
         {
             _combo++;
             UpdateText();
+            UpdateMaxCombo();
         }
 
         public void ResetCombo()
         {
             _combo = 0;
             UpdateText();
+            UpdateMaxCombo();
         }
         
         public void Shake()
@@ -70,6 +77,12 @@ namespace Game.Scripts.UI.Combo
         private void UpdateText()
         {
             _comboText.text = "x" + _combo.ToString("000");
+        }
+
+        private void UpdateMaxCombo()
+        {
+            if (_combo > _maxCombo)
+                _maxCombo = _combo;
         }
     }
 }

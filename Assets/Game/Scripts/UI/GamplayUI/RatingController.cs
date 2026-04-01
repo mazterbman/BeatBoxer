@@ -12,6 +12,7 @@ namespace Game.Scripts.UI.Rating
         private List<RatingUiController> _controllers;
 
         private int _countRating = 5;
+        public int Rating => _countRating;
         
         private void Awake()
         {

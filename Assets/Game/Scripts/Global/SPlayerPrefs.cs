@@ -58,5 +58,17 @@ namespace Game.Scripts.Global
                 PlayerPrefs.Save();
             }
         }
+
+        public static void SavePlayerPref(string key, int value)
+        {
+            PlayerPrefs.SetInt(key, value);
+            PlayerPrefs.Save();
+        }
+
+        public static void SavePlayerPref(string key, float value)
+        {
+            PlayerPrefs.SetFloat(key, value);
+            PlayerPrefs.Save();
+        }
     }
 }

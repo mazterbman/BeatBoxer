@@ -11,6 +11,7 @@ using Game.Scripts.UI.Combo;
 using Game.Scripts.UI.Health;
 using Game.Scripts.UI.Rating;
 using Game.Scripts.UI.Score;
+using Game.Scripts.UI.SettingsCanvas;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
@@ -28,6 +29,8 @@ namespace Game.Scripts.GamePlay
         [SerializeField] private ComboUiController _comboUiController;
         [SerializeField] private CenterUiController _centerUiController;
         [SerializeField] private PlayerInput _playerInput;
+        [SerializeField] private CanvasSettingsController _canvasSettingsController;
+        [SerializeField] private MenuController _menuController;
 
         [Header("Settings")]
         [SerializeField] private MessageSettings _messageSettings;
@@ -46,9 +49,14 @@ namespace Game.Scripts.GamePlay
         [SerializeField] private ArrowController _arrowPrefab;
         [SerializeField] private Transform _arrowsParent;
 
+        [Header("Canvas Reference")] 
+        [SerializeField] private CanvasGoodEndingController _goodEndCanvas;
+        [SerializeField] private GameObject _badEndCanvas;
+
         [Header("Debug")] 
         [SerializeField] private bool _godMode = false;
 
+        private Coroutine _goodEndCoroutine;
         private Coroutine _gameCoroutine;
         private List<ArrowController> _activeArrows = new List<ArrowController>();
         private List<ArrowController> _inActiveArrows = new List<ArrowController>();
@@ -63,6 +71,8 @@ namespace Game.Scripts.GamePlay
         private bool _isGameActive;
         private bool _wasInteract = false;
         private bool _inputActionsAdded;
+
+        private int _countArrowsSelected = 0; 
 
         private static readonly int _normalBonus = 20;
         private static readonly int _perfectBonus = 100;
@@ -104,6 +114,9 @@ namespace Game.Scripts.GamePlay
             if (!_playerInput)
                 _playerInput = GetComponent<PlayerInput>();
 
+            _badEndCanvas.SetActive(false);
+            _goodEndCanvas.gameObject.SetActive(false);
+            
             AddInputActions();
             StartGame();
         }
@@ -139,11 +152,51 @@ namespace Game.Scripts.GamePlay
             _gameCoroutine = StartCoroutine(GameCoroutine());
         }
 
-        public void EndGame()
+        private void GoodEndGame()
         {
             if (!_isGameActive) return;
             _isGameActive = false;
+            
+            EndGame();
+            
+            _badEndCanvas.SetActive(false);
+            _goodEndCanvas.gameObject.SetActive(true);
+            
+            GoodEndingInformation info = new GoodEndingInformation
+            {
+                Combo = _comboUiController.MaxCombo,
+                CountRating = _ratingController.Rating,
+                Score = _scoreUiController.Score,
+                Percent = _scoreUiController.PercentOfMax,
+                CountArrowsSelect = _countArrowsSelected
+            };
+            SavePrefs(info);
+            _goodEndCanvas.Show(info);
+        }
 
+        private void SavePrefs(GoodEndingInformation info)
+        {
+            SPlayerPrefs.SavePlayerPref(_gamePlaySettings.ComboPref, info.Combo);
+            SPlayerPrefs.SavePlayerPref(_gamePlaySettings.RatingPref, info.CountRating);
+            SPlayerPrefs.SavePlayerPref(_gamePlaySettings.ScorePref, info.Score);
+        }
+
+        private void BadEndGame()
+        {
+            if (!_isGameActive) return;
+            _isGameActive = false;
+            
+            EndGame();
+            
+            _badEndCanvas.SetActive(true);
+            _goodEndCanvas.gameObject.SetActive(false);
+        }
+        
+        private void EndGame()
+        {
+            _canvasSettingsController.CanOpenMenu = false;
+            _menuController.CanOpenMenu = false;
+            
             if (_gameCoroutine != null)
                 StopCoroutine(_gameCoroutine);
 
@@ -186,6 +239,7 @@ namespace Game.Scripts.GamePlay
             _inActiveArrows.Add(arrow);
             
             arrow.Hide();
+            _countArrowsSelected++;
             Process(result);
             Debug.Log($"[GamePlayController] Hit {arrow.ArrowType} {arrow.ArrowDirection} with {result}");
         }
@@ -246,7 +300,7 @@ namespace Game.Scripts.GamePlay
             while (_isGameActive && (_activeArrows.Count > 0 || _inActiveArrows.Count > 0))
                 yield return null;
 
-            EndGame();
+            GoodEndGame();
         }
 
         // Спавн стрелки без пула
@@ -387,7 +441,7 @@ namespace Game.Scripts.GamePlay
         private void CheckEnd(int health)
         {
             if (health <= 0)
-                EndGame();
+                BadEndGame();
         }
 
         #region Input System
@@ -410,7 +464,7 @@ namespace Game.Scripts.GamePlay
 
         private void RemoveInputActions()
         {
-            if (!_inputActionsAdded) return;
+            if (!_inputActionsAdded || !_playerInput) return;
 
             var arrowAction = _playerInput?.actions["Arrow"];
             if (arrowAction != null)
