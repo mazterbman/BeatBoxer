@@ -235,11 +235,11 @@ public class OsuTimingEditor : EditorWindow
         {
             return ArrowDirection.Up;
         }
-        else if (x == 256)
+        else if (x == 320)
         {
             return ArrowDirection.Left; // Если нужно для 4-х кнопок
         }
-        else if (x == 320)
+        else if (x == 448)
         {
             return ArrowDirection.Right; // Если нужно для 4-х кнопок
         }

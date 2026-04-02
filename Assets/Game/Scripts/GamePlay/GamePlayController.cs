@@ -31,6 +31,7 @@ namespace Game.Scripts.GamePlay
         [SerializeField] private PlayerInput _playerInput;
         [SerializeField] private CanvasSettingsController _canvasSettingsController;
         [SerializeField] private MenuController _menuController;
+        [SerializeField] private AudioVisualManager _visualManager;
 
         [Header("Settings")]
         [SerializeField] private MessageSettings _messageSettings;
@@ -405,10 +406,17 @@ namespace Game.Scripts.GamePlay
             _comboUiController.Shake();
             _healthController.ShakeAll();
             _ratingController.ShakeAll();
+            _visualManager.Shake();
             
+            ArrowController controller = _inActiveArrows.Last();
             if (result is MessageType.Perfect or MessageType.Normal)
             {
                 _centerUiController.Clk();
+                _visualManager.Visual(controller.ColorFromDirection);
+            }
+            else
+            {
+                _visualManager.Visual(controller.InActiveColor);
             }
         }
 

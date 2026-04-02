@@ -42,6 +42,8 @@ namespace Game.Scripts.GamePlay.Arrow
         private float _totalMoveDuration;
 
         // ----- Публичные свойства -----
+        public Color ColorFromDirection => _colorArrowSelected.Color;
+        public Color InActiveColor => _colorArrowSelected.Color * _colorArrowSelected.ColorMultiplay;
         public ArrowType ArrowType => _arrowType;
         public ArrowDirection ArrowDirection => _arrowDirection;
         public float RemainingTime => _remainingTime;
