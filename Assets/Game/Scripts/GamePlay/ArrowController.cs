@@ -5,7 +5,7 @@ using Game.Scripts.ScriptableObject;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.Scripts.GamePlay.Arrow
+namespace Game.Scripts.GamePlay
 {
     /// <summary>
     /// Controls the arrow movement and state (click/hold).

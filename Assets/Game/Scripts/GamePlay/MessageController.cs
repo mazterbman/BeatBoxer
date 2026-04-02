@@ -6,7 +6,7 @@ using UnityEngine.Pool;
 using Random = UnityEngine.Random;
 using MessageType = Game.Scripts.GamePlay.GamePlayController.MessageType;
 
-namespace Game.Scripts.GamePlay.Message
+namespace Game.Scripts.GamePlay
 {
     public class MessageController : MonoBehaviour
     {

@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Game.Scripts.GamePlay.Arrow;
-using Game.Scripts.GamePlay.Message;
 using Game.Scripts.Global;
 using Game.Scripts.ScriptableObject;
 using Game.Scripts.UI.Center;
@@ -106,8 +104,7 @@ namespace Game.Scripts.GamePlay
             }
             
             _originalTimingValues = new List<TimingValue>(_gamePlaySettings.TrackSettings.TimingValues);
-
-            // Создаём пул только для сообщений
+            
             CreateMessagePool();
 
             _healthController.OnChanged += CheckEnd;
