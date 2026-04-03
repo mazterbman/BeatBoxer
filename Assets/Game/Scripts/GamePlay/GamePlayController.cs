@@ -71,7 +71,8 @@ namespace Game.Scripts.GamePlay
         private bool _wasInteract = false;
         private bool _inputActionsAdded;
 
-        private int _countArrowsSelected = 0; 
+        private int _countArrowsSelected = 0;
+        private float _startDelay;
 
         private static readonly int _normalBonus = 20;
         private static readonly int _perfectBonus = 100;
@@ -89,21 +90,26 @@ namespace Game.Scripts.GamePlay
             _loadedMessageSettings = _messageSettings.Clone();
             RandomizeAllMessages();
 
-            // Сдвигаем времена на время движения, чтобы спавнить стрелки раньше
+            // 1. Считаем смещенные тайминги (они могут стать отрицательными)
             _adjustedTimingValues = new List<TimingValue>();
             foreach (var tv in _gamePlaySettings.TrackSettings.TimingValues)
             {
                 var copy = new TimingValue
                 {
                     TimeStart = tv.TimeStart - _timeToCenter,
-                    TimeEnd = tv.TimeEnd > 0 ? tv.TimeEnd - _timeToCenter : 0,
+                    TimeEnd = tv.TimeEnd > 0 ? tv.TimeEnd - _timeToCenter : 0f,
                     ArrowType = tv.ArrowType,
                     ArrowDirection = tv.ArrowDirection
                 };
                 _adjustedTimingValues.Add(copy);
             }
-            
+
             _originalTimingValues = new List<TimingValue>(_gamePlaySettings.TrackSettings.TimingValues);
+            
+            float minStartTime = _adjustedTimingValues.Min(tv => tv.TimeStart);
+            float startDelay = Mathf.Max(0f, -minStartTime); 
+            
+            _startDelay = startDelay; 
             
             CreateMessagePool();
 
@@ -259,12 +265,10 @@ namespace Game.Scripts.GamePlay
 
         private IEnumerator GameCoroutine()
         {
-            // Добавляем задержку перед стартом, если нужно
-            float startDelay = Mathf.Max(0, _timeToCenter - _adjustedTimingValues[0].TimeStart);
-            if (startDelay > 0)
+            if (_startDelay > 0)
             {
-                Debug.Log($"[GamePlayController] Delaying start by {startDelay:F2}s to accommodate early spawn");
-                yield return new WaitForSeconds(startDelay);
+                Debug.Log($"[GamePlayController] Startup delay: {_startDelay:F2}s to accommodate early arrows");
+                yield return new WaitForSeconds(_startDelay);
             }
             
             _audioSource.clip = _gamePlaySettings.TrackSettings.AudioClip;
