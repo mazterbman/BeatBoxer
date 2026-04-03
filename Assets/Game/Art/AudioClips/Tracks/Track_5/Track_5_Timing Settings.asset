@@ -17,1131 +17,407 @@ MonoBehaviour:
 
     5'
   TimingValues:
-  - TimeStart: 11.396
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 12.094
+  - TimeStart: 0.938
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 12.813
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 13.146
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 13.5
+  - TimeStart: 2.75
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 14.219
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 14.75
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 14.917
+  - TimeStart: 4.115
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 15.271
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 15.625
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 16.323
+  - TimeStart: 4.354
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 17.042
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 17.74
+  - TimeStart: 4.573
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 18.448
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 18.813
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 19.146
+  - TimeStart: 6.385
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 19.865
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 20.396
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 20.573
+  - TimeStart: 7.74
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 20.917
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 21.292
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 21.479
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 21.646
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 22
+  - TimeStart: 7.99
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 22.177
+  - TimeStart: 8.208
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 22.354
+  - TimeStart: 11.833
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 22.531
+  - TimeStart: 12.333
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 2
+  - TimeStart: 12.76
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 2
+  - TimeStart: 13.208
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 2
+  - TimeStart: 13.646
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 22.688
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 23.375
+  - TimeStart: 14.094
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 24.094
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 24.448
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 24.792
+  - TimeStart: 14.552
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 25.5
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 26.042
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 26.219
+  - TimeStart: 15
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 26.563
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 26.917
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 27.625
+  - TimeStart: 15.219
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 28.323
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 29.021
+  - TimeStart: 15.448
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 29.75
+  - TimeStart: 15.948
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 30.094
+    ArrowDirection: 2
+  - TimeStart: 16.385
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 30.448
+    ArrowDirection: 2
+  - TimeStart: 16.833
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 31.146
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 31.688
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 31.865
+    ArrowDirection: 2
+  - TimeStart: 17.271
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 32.198
+  - TimeStart: 17.76
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 32.573
+    ArrowDirection: 2
+  - TimeStart: 18.208
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 33.271
+    ArrowDirection: 2
+  - TimeStart: 18.646
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 33.969
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 34.667
+    ArrowDirection: 2
+  - TimeStart: 18.854
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 35.375
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 35.75
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 36.094
+  - TimeStart: 19.094
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 36.792
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 37.323
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 37.5
+  - TimeStart: 26.333
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 37.865
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 38.25
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 38.427
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 38.594
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 38.938
+  - TimeStart: 28.146
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 39.115
+  - TimeStart: 29.521
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 39.292
+  - TimeStart: 29.74
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 39.469
+  - TimeStart: 29.969
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 39.625
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 40.323
+  - TimeStart: 31.771
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 41.021
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 41.396
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 41.74
+  - TimeStart: 33.365
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 42.448
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 42.969
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 43.146
+  - TimeStart: 33.594
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 43.5
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 43.865
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 44.563
+  - TimeStart: 37.219
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 45.271
+  - TimeStart: 37.698
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 45.969
+    ArrowDirection: 3
+  - TimeStart: 38.146
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 46.688
+    ArrowDirection: 3
+  - TimeStart: 38.604
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 47.042
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 47.396
+    ArrowDirection: 3
+  - TimeStart: 39.021
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 48.094
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 48.625
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 48.792
+  - TimeStart: 39.542
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 49.146
+  - TimeStart: 40
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
+    ArrowDirection: 0
+  - TimeStart: 40.396
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 0
+  - TimeStart: 40.625
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 0
+  - TimeStart: 40.854
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 0
+  - TimeStart: 41.333
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 3
+  - TimeStart: 41.792
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 3
+  - TimeStart: 42.229
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 3
+  - TimeStart: 42.667
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 0
+  - TimeStart: 43.167
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 3
+  - TimeStart: 43.604
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 3
+  - TimeStart: 44.042
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 3
+  - TimeStart: 44.292
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 0
+  - TimeStart: 44.479
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 0
+  - TimeStart: 44.99
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 3
+  - TimeStart: 45.406
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 3
+  - TimeStart: 45.854
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 3
+  - TimeStart: 46.292
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 0
+  - TimeStart: 46.75
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 0
+  - TimeStart: 47.208
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 0
+  - TimeStart: 47.667
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 0
+  - TimeStart: 47.885
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 0
+  - TimeStart: 48.104
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 0
+  - TimeStart: 48.583
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 3
+  - TimeStart: 49.021
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 3
   - TimeStart: 49.5
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 50.219
+    ArrowDirection: 3
+  - TimeStart: 49.906
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 50.917
+  - TimeStart: 50.417
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 51.625
+    ArrowDirection: 3
+  - TimeStart: 50.844
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 52.323
+    ArrowDirection: 3
+  - TimeStart: 51.323
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 52.688
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 53.042
+    ArrowDirection: 2
+  - TimeStart: 51.583
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 53.74
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 54.271
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 54.448
+  - TimeStart: 51.781
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 54.792
+  - TimeStart: 53.531
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 55.177
+    ArrowDirection: 0
+  - TimeStart: 54.906
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
+    ArrowDirection: 0
+  - TimeStart: 55.146
+    TimeEnd: 0
+    ArrowType: 0
+    ArrowDirection: 0
   - TimeStart: 55.365
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 55.531
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 55.885
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 56.063
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 56.24
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 56.417
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 56.563
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 57.271
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 57.99
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 58.323
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 58.688
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 59.396
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 59.917
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 60.094
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 60.448
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 60.813
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 61.5
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 62.219
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 62.917
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 63.625
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 64
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 64.344
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 65.042
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 65.573
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 65.75
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 66.115
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 66.469
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 67.167
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 67.875
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 68.573
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 69.271
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 69.646
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 69.969
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 70.698
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 71.24
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 71.396
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 71.75
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 72.167
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 72.323
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 72.5
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 72.823
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 73
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 73.188
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 73.365
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 73.542
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 74.219
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 74.938
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 75.292
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 75.646
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 76.344
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 76.875
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 77.042
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 77.396
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 77.75
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 78.448
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 79.167
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 79.875
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 80.573
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 80.938
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 81.292
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 82
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 82.521
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 82.698
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 83.042
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 83.396
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 84.094
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 84.823
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 85.521
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 86.219
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 86.573
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 86.938
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 87.646
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 88.167
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 88.344
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 88.698
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 89.063
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 89.25
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 89.427
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 89.76
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 89.948
-    TimeEnd: 0
-    ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 90.125
+  - TimeStart: 57.167
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 90.302
+  - TimeStart: 58.802
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 90.469
+  - TimeStart: 59.031
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 91.167
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 91.875
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 92.24
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 92.573
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 93.292
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 93.823
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 93.99
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 94.344
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 94.698
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 95.396
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 96.125
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 96.823
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 97.521
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 97.875
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 98.219
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 98.938
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 99.469
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 99.646
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 100
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 100.344
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 101.063
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 101.75
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 102.448
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 103.167
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 103.521
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 103.875
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 104.573
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 105.115
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 105.271
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 105.625
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 106
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 106.198
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 106.385
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 106.708
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 106.885
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 107.063
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 107.24
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 107.396
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 108.094
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 108.813
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 109.167
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 109.521
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 110.219
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 110.75
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 110.938
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 111.292
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 111.625
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 112.344
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 113.042
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 113.75
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 114.448
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 114.813
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 115.146
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 115.875
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 116.396
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 116.573
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 116.938
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 117.292
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 117.99
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 118.698
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 119.396
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 120.115
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 120.469
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 120.813
-    TimeEnd: 0
-    ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 121.521
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 122.063
+  - TimeStart: 62.604
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 122.229
-    TimeEnd: 0
-    ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 122.594
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 122.938
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 123.115
+  - TimeStart: 63.135
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 123.292
+    ArrowDirection: 2
+  - TimeStart: 63.531
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 123.646
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 123.823
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 124
+    ArrowDirection: 2
+  - TimeStart: 64.01
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 124.177
+    ArrowDirection: 2
+  - TimeStart: 64.448
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 124.344
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 125.042
+  - TimeStart: 64.885
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 125.75
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 126.094
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 126.469
+  - TimeStart: 65.333
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 127.167
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 127.698
+  - TimeStart: 65.802
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 127.875
-    TimeEnd: 0
-    ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 128.219
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 128.573
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 129.271
+  - TimeStart: 66.031
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 130
+  - TimeStart: 66.25
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 130.688
-    TimeEnd: 0
-    ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 131.396
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 131.75
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 132.115
+  - TimeStart: 66.74
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 0
-  - TimeStart: 132.813
+    ArrowDirection: 2
+  - TimeStart: 67.156
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 133.344
+    ArrowDirection: 2
+  - TimeStart: 67.635
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 133.5
+    ArrowDirection: 2
+  - TimeStart: 68.052
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 133.875
-    TimeEnd: 0
-    ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 134.25
+  - TimeStart: 68.552
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 134.406
+    ArrowDirection: 2
+  - TimeStart: 68.99
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 134.573
+    ArrowDirection: 2
+  - TimeStart: 69.427
     TimeEnd: 0
     ArrowType: 0
-    ArrowDirection: 1
-  - TimeStart: 134.948
+    ArrowDirection: 2
+  - TimeStart: 69.656
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 135.125
+  - TimeStart: 69.885
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 135.292
+  - TimeStart: 76.906
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0
-  - TimeStart: 135.469
+  - TimeStart: 77.135
     TimeEnd: 0
     ArrowType: 0
     ArrowDirection: 0

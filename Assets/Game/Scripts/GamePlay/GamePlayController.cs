@@ -95,7 +95,7 @@ namespace Game.Scripts.GamePlay
             {
                 var copy = new TimingValue
                 {
-                    TimeStart = Mathf.Max(tv.TimeStart - _timeToCenter, 0),
+                    TimeStart = tv.TimeStart - _timeToCenter,
                     TimeEnd = tv.TimeEnd > 0 ? tv.TimeEnd - _timeToCenter : 0,
                     ArrowType = tv.ArrowType,
                     ArrowDirection = tv.ArrowDirection
@@ -260,7 +260,7 @@ namespace Game.Scripts.GamePlay
         private IEnumerator GameCoroutine()
         {
             // Добавляем задержку перед стартом, если нужно
-            float startDelay = Mathf.Max(0, -_adjustedTimingValues[0].TimeStart);
+            float startDelay = Mathf.Max(0, _timeToCenter - _adjustedTimingValues[0].TimeStart);
             if (startDelay > 0)
             {
                 Debug.Log($"[GamePlayController] Delaying start by {startDelay:F2}s to accommodate early spawn");
