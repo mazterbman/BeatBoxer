@@ -73,6 +73,7 @@ namespace Game.Scripts.GamePlay
 
         private int _countArrowsSelected = 0;
         private float _startDelay;
+        private float _gameTimer;
 
         private static readonly int _normalBonus = 20;
         private static readonly int _perfectBonus = 100;
@@ -90,26 +91,28 @@ namespace Game.Scripts.GamePlay
             _loadedMessageSettings = _messageSettings.Clone();
             RandomizeAllMessages();
 
-            // 1. Считаем смещенные тайминги (они могут стать отрицательными)
+            // Оригинальные тайминги (копируем для справки)
+            _originalTimingValues = new List<TimingValue>(_gamePlaySettings.TrackSettings.TimingValues);
+
+            // Находим самое раннее время центра
+            float minOriginalStart = _originalTimingValues.Min(tv => tv.TimeStart);
+
+            // Задержка перед стартом музыки, чтобы самая ранняя стрелка успела пройти путь
+            _startDelay = Mathf.Max(0f, _timeToCenter - minOriginalStart);
+
+            // Создаём скорректированные тайминги (время старта движения)
             _adjustedTimingValues = new List<TimingValue>();
-            foreach (var tv in _gamePlaySettings.TrackSettings.TimingValues)
+            foreach (var tv in _originalTimingValues)
             {
                 var copy = new TimingValue
                 {
-                    TimeStart = tv.TimeStart - _timeToCenter,
-                    TimeEnd = tv.TimeEnd > 0 ? tv.TimeEnd - _timeToCenter : 0f,
+                    TimeStart = tv.TimeStart + _startDelay - _timeToCenter,
+                    TimeEnd = tv.TimeEnd > 0 ? tv.TimeEnd + _startDelay - _timeToCenter : 0f,
                     ArrowType = tv.ArrowType,
                     ArrowDirection = tv.ArrowDirection
                 };
                 _adjustedTimingValues.Add(copy);
             }
-
-            _originalTimingValues = new List<TimingValue>(_gamePlaySettings.TrackSettings.TimingValues);
-            
-            float minStartTime = _adjustedTimingValues.Min(tv => tv.TimeStart);
-            float startDelay = Mathf.Max(0f, -minStartTime); 
-            
-            _startDelay = startDelay; 
             
             CreateMessagePool();
 
@@ -152,7 +155,7 @@ namespace Game.Scripts.GamePlay
             foreach (var arrow in _activeArrows)
                 Destroy(arrow.gameObject);
             _activeArrows.Clear();
-
+            
             _gameCoroutine = StartCoroutine(GameCoroutine());
         }
 
@@ -265,41 +268,49 @@ namespace Game.Scripts.GamePlay
 
         private IEnumerator GameCoroutine()
         {
-            if (_startDelay > 0)
-            {
-                Debug.Log($"[GamePlayController] Startup delay: {_startDelay:F2}s to accommodate early arrows");
-                yield return new WaitForSeconds(_startDelay);
-            }
-            
-            _audioSource.clip = _gamePlaySettings.TrackSettings.AudioClip;
-            _audioSource.Play();
-
-            yield return new WaitUntil(() => _audioSource.isPlaying);
-
+            _gameTimer = 0f;
             int nextIndex = 0;
-            float endTime = _adjustedTimingValues.Count > 0 ? _adjustedTimingValues.Last().TimeStart : 0f;
+            bool musicStarted = false;
 
-            while (_audioSource.time < endTime && _isGameActive)
+            // Общая длительность: время последнего центра + запас
+            float lastOriginalCenter = _originalTimingValues.Last().TimeStart;
+            float lastRealCenter = lastOriginalCenter + _startDelay + _timeToCenter;
+            float totalGameDuration = lastRealCenter + 2f; // запас 2 секунды
+
+            while (_isGameActive && _gameTimer < totalGameDuration)
             {
-                if (nextIndex < _adjustedTimingValues.Count &&
-                    _adjustedTimingValues[nextIndex].TimeStart <= _audioSource.time)
+                // Пауза – не двигаем таймер
+                if (_isPauseGame)
+                {
+                    yield return null;
+                    continue;
+                }
+
+                _gameTimer += Time.deltaTime;
+
+                // Запуск музыки, когда настало время
+                if (!musicStarted && _gameTimer >= _startDelay)
+                {
+                    _audioSource.clip = _gamePlaySettings.TrackSettings.AudioClip;
+                    _audioSource.Play();
+                    musicStarted = true;
+                }
+
+                // Спавн стрелок по расписанию (используем реальное время)
+                while (nextIndex < _adjustedTimingValues.Count &&
+                       _adjustedTimingValues[nextIndex].TimeStart <= _gameTimer)
                 {
                     SpawnArrow(_adjustedTimingValues[nextIndex], _originalTimingValues[nextIndex], nextIndex);
                     nextIndex++;
+                    _scoreUiController.SetMaxScore(nextIndex * _perfectBonus);
                 }
-                
-                _scoreUiController.SetMaxScore(nextIndex * _perfectBonus);
+
                 yield return null;
             }
 
-            while (nextIndex < _adjustedTimingValues.Count && _isGameActive)
-            {
-                SpawnArrow(_adjustedTimingValues[nextIndex], _originalTimingValues[nextIndex], nextIndex);
-                nextIndex++;
-                yield return null;
-            }
-
-            while (_isGameActive && (_activeArrows.Count > 0 || _inActiveArrows.Count > 0))
+            // Ждём, пока все стрелки не будут обработаны и музыка не доиграет
+            while (_isGameActive && (_activeArrows.Count > 0 || _inActiveArrows.Count > 0 ||
+                                     (musicStarted && _audioSource.isPlaying)))
                 yield return null;
 
             GoodEndGame();

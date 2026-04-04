@@ -151,7 +151,8 @@ namespace Game.Scripts.GamePlay
         {
             float startRemaining = _totalMoveDuration;
             Vector2 startPos = _holder.anchoredPosition;
-            float targetX = 1920f + _holder.sizeDelta.x / 2f; // правый край экрана (зависит от разрешения)
+            float targetX = 1920f + _holder.sizeDelta.x; // правый край экрана (зависит от разрешения)
+            float centerX = targetX / 2f;
             Vector2 targetPos = new Vector2(targetX, startPos.y);
 
             while (_totalMoveDuration > 0f)
@@ -168,7 +169,7 @@ namespace Game.Scripts.GamePlay
                 _remainingTime -= Time.deltaTime;
 
                 // Проверяем достижение центра (x = 960)
-                if (!_isPassedCenter && _holder.anchoredPosition.x >= 960f)
+                if (!_isPassedCenter && _holder.anchoredPosition.x >= centerX)
                 {
                     OnReachCenter();
                 }

@@ -2709,8 +2709,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1ab24f31809662f4eafba156bfe371bf, type: 2}
   - {fileID: 11400000, guid: edd1296ba81b57041b9e756b19e9c132, type: 2}
   - {fileID: 11400000, guid: c95a477fbcdaf63408298f16f0df37be, type: 2}
-  _perfectWindow: 0.1
-  _normalWindow: 0.15
+  _perfectWindow: 0.12
+  _normalWindow: 0.17
   _saveTime: 0.05
   _timeToCenter: 5
   _arrowPrefab: {fileID: 6352999643956857630, guid: bd53e1a56b3e98841901b254d4f627bd, type: 3}
