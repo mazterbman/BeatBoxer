@@ -34,6 +34,10 @@ namespace Game.Scripts.UI.MainMenuUI
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            _sourceBack.Stop();
+            _sourceBack.clip = _trackSettings.AudioClip;
+            _sourceBack.Play();
         }
 
         public void ChangeTimings(TrackSettings trackSettings)

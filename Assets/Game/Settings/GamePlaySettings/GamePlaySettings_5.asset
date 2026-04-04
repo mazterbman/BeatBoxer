@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afecd7a4d4fa4445813fc2f8020f380, type: 3}
   m_Name: GamePlaySettings_5
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.ScriptableObject.GamePlaySettings
-  TrackSettings: {fileID: 11400000, guid: 8e889b5ff371f4644b7ca2383cc05bd4, type: 2}
+  TrackSettings: {fileID: 11400000, guid: cc132efffb602034d834bfd438d122ea, type: 2}
   ScorePref: Score_Track_5
   RatingPref: Rating_Track_5
   ComboPref: Combo_Track_5

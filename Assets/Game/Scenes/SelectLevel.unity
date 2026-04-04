@@ -7542,7 +7542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 1}
+  m_Color: {r: 0.05660379, g: 0.05660379, b: 0.05660379, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12281,13 +12281,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.SelectMenu.SelectItemManager
   _settingsList:
   - {fileID: 11400000, guid: 160ada5b85c494b4c971b76be42ffa4a, type: 2}
-  - {fileID: 11400000, guid: 04180cc4d5ed9a6418c1c55efb95829c, type: 2}
   - {fileID: 11400000, guid: bba8ef6e2276c294c8ff3448bbdc2b8c, type: 2}
   - {fileID: 11400000, guid: b5e0b772bd3e617488e71f034c20df3f, type: 2}
   - {fileID: 11400000, guid: 3e386f2e54f0189498db2facd3d90b17, type: 2}
   - {fileID: 11400000, guid: 1ab24f31809662f4eafba156bfe371bf, type: 2}
   - {fileID: 11400000, guid: edd1296ba81b57041b9e756b19e9c132, type: 2}
-  - {fileID: 11400000, guid: c95a477fbcdaf63408298f16f0df37be, type: 2}
   _content: {fileID: 932203523}
   _verticalLayoutGroup: {fileID: 932203525}
   _controllerPrefab: {fileID: 6627218156502478204, guid: 173636e12514c5642b57646088c4f13f, type: 3}

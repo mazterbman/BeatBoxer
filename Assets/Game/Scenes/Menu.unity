@@ -7285,7 +7285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 1}
+  m_Color: {r: 0.05660379, g: 0.05660379, b: 0.05660379, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8487,7 +8487,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 845fd41faf28901479fffd882b2972d4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8495,7 +8495,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1682441025
 CanvasRenderer:
@@ -10773,7 +10773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e81010c2acb22447a3f00a8697eea65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.MainMenuUI.BeatUiManager
-  _trackSettings: {fileID: 11400000, guid: aeabf3d66fa831f4799748538ff85951, type: 2}
+  _trackSettings: {fileID: 11400000, guid: c4a8370dce74d6f4185bde70b2756453, type: 2}
   _sourceBack: {fileID: 1318431067}
   _timeLerpChangeAudio: 0.25
 --- !u!1 &2042177234
