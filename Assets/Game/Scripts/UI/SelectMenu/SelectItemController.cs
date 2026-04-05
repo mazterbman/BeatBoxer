@@ -15,6 +15,7 @@ namespace Game.Scripts.UI.SelectMenu
         [SerializeField] private ButtonMenuController _buttonMenuController;
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private TMP_Text _textNameTrack;
+        [SerializeField] private TMP_Text _textNumberTrack;
         [SerializeField] private MenuItemController _menuItemController;
         
         [Space]
@@ -81,7 +82,7 @@ namespace Game.Scripts.UI.SelectMenu
             _content = content;
             _verticalLayoutGroup = contentVerticalGroup;
 
-            _textNameTrack.text = _gamePlaySettings.TrackSettings.NameTrack;
+            _textNumberTrack.text = _indexSelect.ToString();
 
             if (_indexSelect == 0)
             {
@@ -94,9 +95,7 @@ namespace Game.Scripts.UI.SelectMenu
                 _state = StateItem.UnSelect;
             }
 
-            _imageBack.color = _originBackColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
-            _imageIco.color = _originIcoColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
-            _textNameTrack.color = _originalNameTrackColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
+            ApplyColors();
             
             _contentYPosition = (_rect.sizeDelta.y + _verticalLayoutGroup.spacing) * _indexSelect;
             gameObject.name = $"Level_{_indexSelect}";
@@ -119,9 +118,7 @@ namespace Game.Scripts.UI.SelectMenu
             }
             
             _state = StateItem.UnSelect;
-            _imageBack.color = _originBackColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
-            _imageIco.color = _originIcoColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
-            _textNameTrack.color = _originalNameTrackColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
+            ApplyColors();
         }
 
         public void UnInteractive()
@@ -166,9 +163,7 @@ namespace Game.Scripts.UI.SelectMenu
                     throw new ArgumentOutOfRangeException();
             }
             
-            _imageBack.color = _originBackColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
-            _imageIco.color = _originIcoColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
-            _textNameTrack.color = _originalNameTrackColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
+            ApplyColors();
             _manager.CloseOther(this);
         }
 
@@ -191,7 +186,14 @@ namespace Game.Scripts.UI.SelectMenu
         {
             _manager.SelectSettings(_indexSelect);
         }
-        
+
+        private void ApplyColors()
+        {
+            _imageBack.color = _originBackColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
+            _imageIco.color = _originIcoColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
+            _textNameTrack.color = _originalNameTrackColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
+            _textNumberTrack.color = _originalNameTrackColor * (_state == StateItem.UnSelect ? _unSelectColor : _selectColor);
+        }
 
         private void StartMove()
         {
