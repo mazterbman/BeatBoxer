@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Game.Scripts.Global;
 using Game.Scripts.ScriptableObject;
-using Game.Scripts.UI.LoadingCanvas;
 using UnityEngine;
 using UnityEngine.UI;
 

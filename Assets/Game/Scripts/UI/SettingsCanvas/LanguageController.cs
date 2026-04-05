@@ -72,7 +72,7 @@ namespace Game.Scripts.UI.SettingsCanvas
             }
         }
         
-        void SelectLocale(string localeCode)
+        private void SelectLocale(string localeCode)
         {
             Locale locale =
                 LocalizationSettings.AvailableLocales.GetLocale(localeCode);

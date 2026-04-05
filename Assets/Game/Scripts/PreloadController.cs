@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using Game.Scripts.UI.LoadingCanvas;
+using Game.Scripts.UI;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 

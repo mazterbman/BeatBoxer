@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Game.Scripts.UI.LoadingCanvas
+namespace Game.Scripts.UI
 {
     public class LoadingManager : MonoBehaviour
     {
@@ -18,7 +17,7 @@ namespace Game.Scripts.UI.LoadingCanvas
         private Coroutine _coroutineHide;
         private Coroutine _coroutineShow;
         private int _indexScene;
-        private bool _isHide = false;
+        private bool _isHide;
         
         private void Awake()
         {
