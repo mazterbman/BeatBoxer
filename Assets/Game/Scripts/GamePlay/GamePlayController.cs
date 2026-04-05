@@ -159,6 +159,12 @@ namespace Game.Scripts.GamePlay
             _gameCoroutine = StartCoroutine(GameCoroutine());
         }
 
+        public void UpdateLocalisation()
+        {
+            _loadedMessageSettings = _messageSettings.Clone();
+            RandomizeAllMessages();
+        }
+
         private void GoodEndGame()
         {
             if (!_isGameActive) return;

@@ -2690,6 +2690,7 @@ GameObject:
   m_Component:
   - component: {fileID: 640963107}
   - component: {fileID: 640963108}
+  - component: {fileID: 640963109}
   m_Layer: 0
   m_Name: GamePlayController
   m_TagString: Untagged
@@ -2748,8 +2749,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3e386f2e54f0189498db2facd3d90b17, type: 2}
   - {fileID: 11400000, guid: 1ab24f31809662f4eafba156bfe371bf, type: 2}
   - {fileID: 11400000, guid: edd1296ba81b57041b9e756b19e9c132, type: 2}
-  _perfectWindow: 0.12
-  _normalWindow: 0.17
+  _perfectWindow: 0.15
+  _normalWindow: 0.2
   _saveTime: 0.05
   _timeToCenter: 5
   _arrowPrefab: {fileID: 6352999643956857630, guid: bd53e1a56b3e98841901b254d4f627bd, type: 3}
@@ -2757,6 +2758,63 @@ MonoBehaviour:
   _goodEndCanvas: {fileID: 1038960193}
   _badEndCanvas: {fileID: 1016536745}
   _godMode: 0
+--- !u!114 &640963109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640963106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.PropertyVariants.GameObjectLocalizer
+  m_TrackedObjects:
+  - rid: 9024493588275789950
+  references:
+    version: 2
+    RefIds:
+    - rid: 9024493588275789950
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 640963108}
+        m_TrackedProperties:
+          items:
+          - rid: 9024493588275789951
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 640963108}
+              m_TargetAssemblyTypeName: Game.Scripts.GamePlay.GamePlayController,
+                Assembly-CSharp
+              m_MethodName: UpdateLocalisation
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 9024493588275789951
+      type: {class: LocalizedAssetProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_Localized:
+          rid: 9024493588275789952
+        m_PropertyPath: _messageSettings
+    - rid: 9024493588275789952
+      type: {class: LocalizedObject, ns: UnityEngine.Localization, asm: Unity.Localization}
+      data:
+        m_TableReference:
+          m_TableCollectionName: GUID:0a5c70f971b155a49b607554afac808a
+        m_TableEntryReference:
+          m_KeyId: 7710040064
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
 --- !u!1001 &677780687
 PrefabInstance:
   m_ObjectHideFlags: 0
