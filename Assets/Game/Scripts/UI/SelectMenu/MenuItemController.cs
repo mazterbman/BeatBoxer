@@ -40,8 +40,7 @@ namespace Game.Scripts.UI.SelectMenu
 
         private void LoadGamePlay()
         {
-            // Load GamePLay
-            LoadingManager.Instance.LoadSceneAsync(2);
+            LoadingManager.Instance.LoadSceneAsync(3);
         }
         
         

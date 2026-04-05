@@ -102,7 +102,7 @@ namespace Game.Scripts.UI.SelectMenu
             
             if (!haveOpen)
             {
-                LoadingManager.Instance.LoadSceneAsync(0);
+                LoadingManager.Instance.LoadSceneAsync(1);
             }
         }
         

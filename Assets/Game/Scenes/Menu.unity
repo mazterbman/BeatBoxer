@@ -12415,7 +12415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3172082862190337260, guid: 82f8cddb6c6932a4095beb8255b50344, type: 3}
       propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3172082862190337260, guid: 82f8cddb6c6932a4095beb8255b50344, type: 3}
       propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

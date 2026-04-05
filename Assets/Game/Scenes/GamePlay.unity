@@ -217,7 +217,15 @@ MonoBehaviour:
   baseHeight: 0.1
   fftWindow: 0
   useDecibels: 0
-  spectrumData: []
+  smoothSpeed: 12
+  useWebAudioPlugin: 1
+  webGLFFTSize: 4096
+  webGLUseLinearScale: 1
+  webGLGain: 1.2
+  useFallback: 1
+  fallbackIntensity: 0.8
+  debugLog: 0
+  showSpectrumInEditor: 0
 --- !u!1001 &19341612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3549,6 +3557,10 @@ PrefabInstance:
       propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 332691152}
+    - target: {fileID: 4706276577873284540, guid: 1fb98194bea1eed4e983933e9b1d6b4a, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4906,6 +4918,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1412300446}
     m_Modifications:
+    - target: {fileID: 3172082862190337260, guid: 82f8cddb6c6932a4095beb8255b50344, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3172082862190337260, guid: 82f8cddb6c6932a4095beb8255b50344, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 702899781}
+    - target: {fileID: 3172082862190337260, guid: 82f8cddb6c6932a4095beb8255b50344, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5553716566041617438, guid: 82f8cddb6c6932a4095beb8255b50344, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6706,11 +6730,19 @@ MonoBehaviour:
   - {fileID: 144067155}
   - {fileID: 131993039}
   frequencyFocusWindow: 16
-  amplification: 80
+  amplification: 10
   baseHeight: 0.1
   fftWindow: 0
   useDecibels: 0
-  spectrumData: []
+  smoothSpeed: 12
+  useWebAudioPlugin: 1
+  webGLFFTSize: 4096
+  webGLUseLinearScale: 1
+  webGLGain: 1.2
+  useFallback: 1
+  fallbackIntensity: 0.8
+  debugLog: 0
+  showSpectrumInEditor: 0
 --- !u!114 &1554949461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9508,6 +9540,10 @@ PrefabInstance:
       propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 332691152}
+    - target: {fileID: 6942474042234687280, guid: 064e4b15de6c741458368ff9c40f32f8, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9754,6 +9790,10 @@ PrefabInstance:
       propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 332691152}
+    - target: {fileID: 7376701717682396155, guid: f3c8f1ca3b5ee4e4ca048d62eafa5cad, type: 3}
+      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

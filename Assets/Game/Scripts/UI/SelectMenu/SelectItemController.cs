@@ -82,7 +82,7 @@ namespace Game.Scripts.UI.SelectMenu
             _content = content;
             _verticalLayoutGroup = contentVerticalGroup;
 
-            _textNumberTrack.text = _indexSelect.ToString();
+            _textNumberTrack.text = (_indexSelect + 1).ToString();
 
             if (_indexSelect == 0)
             {
