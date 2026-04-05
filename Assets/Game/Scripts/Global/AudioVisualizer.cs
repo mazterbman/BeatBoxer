@@ -18,13 +18,13 @@ namespace Game.Scripts.Global
         [Header("State")]
         public float[] spectrumData;
  
-        void Awake()
+        private void Awake()
         {
             // Must be a power of 2 number, between 64 and 8192
             spectrumData = new float[4096];
         }
  
-        void Update()
+        private void Update()
         {
             audioSource.GetSpectrumData(spectrumData, 0, fftWindow);
             var blockSize = spectrumData.Length / bars.Length / (int)frequencyFocusWindow;

@@ -217,15 +217,7 @@ MonoBehaviour:
   baseHeight: 0.1
   fftWindow: 0
   useDecibels: 0
-  smoothSpeed: 12
-  useWebAudioPlugin: 1
-  webGLFFTSize: 4096
-  webGLUseLinearScale: 1
-  webGLGain: 1.2
-  useFallback: 1
-  fallbackIntensity: 0.8
-  debugLog: 0
-  showSpectrumInEditor: 0
+  spectrumData: []
 --- !u!1001 &19341612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6730,19 +6722,11 @@ MonoBehaviour:
   - {fileID: 144067155}
   - {fileID: 131993039}
   frequencyFocusWindow: 16
-  amplification: 10
+  amplification: 80
   baseHeight: 0.1
   fftWindow: 0
   useDecibels: 0
-  smoothSpeed: 12
-  useWebAudioPlugin: 1
-  webGLFFTSize: 4096
-  webGLUseLinearScale: 1
-  webGLGain: 1.2
-  useFallback: 1
-  fallbackIntensity: 0.8
-  debugLog: 0
-  showSpectrumInEditor: 0
+  spectrumData: []
 --- !u!114 &1554949461
 MonoBehaviour:
   m_ObjectHideFlags: 0
