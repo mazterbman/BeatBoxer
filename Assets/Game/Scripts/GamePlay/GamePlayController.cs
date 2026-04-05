@@ -66,6 +66,8 @@ namespace Game.Scripts.GamePlay
         private List<TimingValue> _adjustedTimingValues;
         private List<TimingValue> _originalTimingValues;
 
+        private InputAction _arrowAction;
+        
         private bool _isPauseGame;
         private bool _isGameActive;
         private bool _wasInteract = false;
@@ -426,6 +428,8 @@ namespace Game.Scripts.GamePlay
             _ratingController.ShakeAll();
             _visualManager.Shake();
             
+            if (_inActiveArrows.Count <= 0) return;
+            
             ArrowController controller = _inActiveArrows.Last();
             if (result is MessageType.Perfect or MessageType.Normal)
             {
@@ -476,28 +480,24 @@ namespace Game.Scripts.GamePlay
         {
             if (_inputActionsAdded) return;
 
-            var arrowAction = _playerInput.actions["Arrow"];
-            if (arrowAction == null)
+            _arrowAction = _playerInput.actions["Arrow"];
+            if (_arrowAction == null)
             {
                 Debug.LogError($"[GamePlayController] Action 'Arrow' not found in Input Actions!");
                 return;
             }
 
-            arrowAction.started += OnArrowStarted;
-            arrowAction.canceled += OnArrowCanceled;
+            _arrowAction.started += OnArrowStarted;
+            _arrowAction.canceled += OnArrowCanceled;
             _inputActionsAdded = true;
         }
 
         private void RemoveInputActions()
         {
-            if (!_inputActionsAdded || !_playerInput) return;
-
-            var arrowAction = _playerInput?.actions["Arrow"];
-            if (arrowAction != null)
-            {
-                arrowAction.started -= OnArrowStarted;
-                arrowAction.canceled -= OnArrowCanceled;
-            }
+            if (!_inputActionsAdded || _arrowAction == null) return;
+            
+            _arrowAction.started -= OnArrowStarted;
+            _arrowAction.canceled -= OnArrowCanceled;
             _inputActionsAdded = false;
         }
 
