@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3024759171304856130, guid: 8121628939058e4409649473b0dbbc43, type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 237578870784
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024759171304856130, guid: 8121628939058e4409649473b0dbbc43, type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:8e8ea4b2d190c494d819368df32f662b
+      objectReference: {fileID: 0}
     - target: {fileID: 3887771569489549078, guid: 8121628939058e4409649473b0dbbc43, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

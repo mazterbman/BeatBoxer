@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Text&Titles_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 7b32c38ff80d47e49bfea7b4a583e97d, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 12671901696
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 250711236608
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1865660882944
+    m_Localized: Retry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1973752291328
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2123010793472
+    m_Localized: Give Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2251113226240
+    m_Localized: LEVEL FAILED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4984042020864
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140867485696
+    m_Localized: 'Score:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10189269753856
+    m_Localized: Notes Hit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10226435481600
+    m_Localized: Max Combo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10259717283840
+    m_Localized: Accuarcy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11350014025728
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: SettingsTexts Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: SettingsTexts
+  m_TableCollectionNameGuidString: 8e8ea4b2d190c494d819368df32f662b
+  m_Entries:
+  - m_Id: 16148979712
+    m_Key: Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98567053312
+    m_Key: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 237578870784
+    m_Key: Main
+    m_Metadata:
+      m_Items: []
+  - m_Id: 356193787904
+    m_Key: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 385834934272
+    m_Key: Ui
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 9024493588275789849
+  references:
+    version: 2
+    RefIds:
+    - rid: 9024493588275789849
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1775354853924

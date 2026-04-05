@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Game.Scripts.Global;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 namespace Game.Scripts.UI.SettingsCanvas
 {
@@ -19,6 +21,11 @@ namespace Game.Scripts.UI.SettingsCanvas
         {
             {TypeLanguage.English , "English"},
             {TypeLanguage.Russian, "Русский"}
+        };
+        private static readonly Dictionary<TypeLanguage, string> LanguageDicLoc = new Dictionary<TypeLanguage, string>()
+        {
+            {TypeLanguage.English , "en"},
+            {TypeLanguage.Russian, "ru"}
         };
         
         private void Awake()
@@ -52,11 +59,25 @@ namespace Game.Scripts.UI.SettingsCanvas
         {
             _selectedType = (TypeLanguage)index;
             SPlayerPrefs.LanguageIndex = index;
+            
             if (LanguageDic.TryGetValue(_selectedType, out var value))
             {
                 _languageText.text = value;
                 Debug.Log($"Change Language on {_selectedType}");
             }
+
+            if (LanguageDicLoc.TryGetValue(_selectedType, out var text))
+            {
+                SelectLocale(text);
+            }
+        }
+        
+        void SelectLocale(string localeCode)
+        {
+            Locale locale =
+                LocalizationSettings.AvailableLocales.GetLocale(localeCode);
+
+            LocalizationSettings.SelectedLocale = locale;
         }
     }
 

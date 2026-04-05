@@ -36,6 +36,14 @@ PrefabInstance:
       propertyPath: m_text
       value: Exit
       objectReference: {fileID: 0}
+    - target: {fileID: 6490835695325390541, guid: 35390c094e9a18e488e11b46b5f4e322, type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 4984042020864
+      objectReference: {fileID: 0}
+    - target: {fileID: 6490835695325390541, guid: 35390c094e9a18e488e11b46b5f4e322, type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:7b32c38ff80d47e49bfea7b4a583e97d
+      objectReference: {fileID: 0}
     - target: {fileID: 6527509730873322517, guid: 35390c094e9a18e488e11b46b5f4e322, type: 3}
       propertyPath: m_Name
       value: ButtonExit Variant

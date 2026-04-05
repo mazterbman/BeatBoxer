@@ -339,6 +339,7 @@ GameObject:
   - component: {fileID: 39504717}
   - component: {fileID: 39504719}
   - component: {fileID: 39504718}
+  - component: {fileID: 39504720}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -465,6 +466,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39504716}
   m_CullTransparentMesh: 1
+--- !u!114 &39504720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39504716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:7b32c38ff80d47e49bfea7b4a583e97d
+    m_TableEntryReference:
+      m_KeyId: 10140867485696
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 39504718}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1001 &83102089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2702,13 +2743,11 @@ MonoBehaviour:
     MaxSize: 5
   _gamePlaySettingsList:
   - {fileID: 11400000, guid: 160ada5b85c494b4c971b76be42ffa4a, type: 2}
-  - {fileID: 11400000, guid: 04180cc4d5ed9a6418c1c55efb95829c, type: 2}
   - {fileID: 11400000, guid: bba8ef6e2276c294c8ff3448bbdc2b8c, type: 2}
   - {fileID: 11400000, guid: b5e0b772bd3e617488e71f034c20df3f, type: 2}
   - {fileID: 11400000, guid: 3e386f2e54f0189498db2facd3d90b17, type: 2}
   - {fileID: 11400000, guid: 1ab24f31809662f4eafba156bfe371bf, type: 2}
   - {fileID: 11400000, guid: edd1296ba81b57041b9e756b19e9c132, type: 2}
-  - {fileID: 11400000, guid: c95a477fbcdaf63408298f16f0df37be, type: 2}
   _perfectWindow: 0.12
   _normalWindow: 0.17
   _saveTime: 0.05
@@ -3449,37 +3488,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4706276577873284540, guid: 1fb98194bea1eed4e983933e9b1d6b4a, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4706276577873284540, guid: 1fb98194bea1eed4e983933e9b1d6b4a, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4706276577873284540, guid: 1fb98194bea1eed4e983933e9b1d6b4a, type: 3}
       propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 332691152}
-    - target: {fileID: 4706276577873284540, guid: 1fb98194bea1eed4e983933e9b1d6b4a, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4706276577873284540, guid: 1fb98194bea1eed4e983933e9b1d6b4a, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadSceneAsync
-      objectReference: {fileID: 0}
-    - target: {fileID: 4706276577873284540, guid: 1fb98194bea1eed4e983933e9b1d6b4a, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Game.Scripts.UI.LoadingCanvas.LoadingManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4706276577873284540, guid: 1fb98194bea1eed4e983933e9b1d6b4a, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4706276577873284540, guid: 1fb98194bea1eed4e983933e9b1d6b4a, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4662,6 +4673,7 @@ GameObject:
   - component: {fileID: 1006886101}
   - component: {fileID: 1006886103}
   - component: {fileID: 1006886102}
+  - component: {fileID: 1006886104}
   m_Layer: 5
   m_Name: TitleFaled
   m_TagString: Untagged
@@ -4788,6 +4800,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006886100}
   m_CullTransparentMesh: 1
+--- !u!114 &1006886104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006886100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:7b32c38ff80d47e49bfea7b4a583e97d
+    m_TableEntryReference:
+      m_KeyId: 2251113226240
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1006886102}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1001 &1015804180
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8600,49 +8652,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 1440387719}
     m_Modifications:
     - target: {fileID: 3112803070125695444, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112803070125695444, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112803070125695444, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
       propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 332691152}
-    - target: {fileID: 3112803070125695444, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112803070125695444, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ResetActiveScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112803070125695444, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Game.Scripts.UI.LoadingCanvas.LoadingManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112803070125695444, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3586655837490704827, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
-      propertyPath: m_text
-      value: Retry
-      objectReference: {fileID: 0}
-    - target: {fileID: 3586655837490704827, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
-      propertyPath: m_fontSize
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3586655837490704827, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3586655837490704827, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5342859749178153254, guid: 94f02dce9ebf1ad48b09f1bbb9442c55, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -9329,42 +9341,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1956997835272440481, guid: 844131bb4ff69324cb543f76ab2390d5, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3118382734875915593, guid: 844131bb4ff69324cb543f76ab2390d5, type: 3}
       propertyPath: m_Name
       value: Button_Retry
       objectReference: {fileID: 0}
     - target: {fileID: 8809010555738534483, guid: 844131bb4ff69324cb543f76ab2390d5, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8809010555738534483, guid: 844131bb4ff69324cb543f76ab2390d5, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8809010555738534483, guid: 844131bb4ff69324cb543f76ab2390d5, type: 3}
       propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 332691152}
-    - target: {fileID: 8809010555738534483, guid: 844131bb4ff69324cb543f76ab2390d5, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8809010555738534483, guid: 844131bb4ff69324cb543f76ab2390d5, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ResetActiveScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 8809010555738534483, guid: 844131bb4ff69324cb543f76ab2390d5, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Game.Scripts.UI.LoadingCanvas.LoadingManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8809010555738534483, guid: 844131bb4ff69324cb543f76ab2390d5, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9460,36 +9444,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3540325896488454186, guid: 064e4b15de6c741458368ff9c40f32f8, type: 3}
       propertyPath: m_Name
-      value: Button_ChooseLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 6942474042234687280, guid: 064e4b15de6c741458368ff9c40f32f8, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6942474042234687280, guid: 064e4b15de6c741458368ff9c40f32f8, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: Button_GiveUp
       objectReference: {fileID: 0}
     - target: {fileID: 6942474042234687280, guid: 064e4b15de6c741458368ff9c40f32f8, type: 3}
       propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 332691152}
-    - target: {fileID: 6942474042234687280, guid: 064e4b15de6c741458368ff9c40f32f8, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6942474042234687280, guid: 064e4b15de6c741458368ff9c40f32f8, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadSceneAsync
-      objectReference: {fileID: 0}
-    - target: {fileID: 6942474042234687280, guid: 064e4b15de6c741458368ff9c40f32f8, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Game.Scripts.UI.LoadingCanvas.LoadingManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6942474042234687280, guid: 064e4b15de6c741458368ff9c40f32f8, type: 3}
-      propertyPath: OnClkEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
