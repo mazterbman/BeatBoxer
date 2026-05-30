@@ -24,9 +24,3 @@ https://github.com/user-attachments/assets/2c966702-26b1-40a5-9bd4-da663713f095
 ## 🛠️ Технологии
 
 Unity · C# · ZenJect · UniTask · Addressables
-
-## 🚀 Быстрый старт
-
-```bash
-git clone ...
-# открыть в Unity Hub
