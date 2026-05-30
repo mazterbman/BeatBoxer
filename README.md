@@ -1,8 +1,8 @@
 # BeatBoxer
 
-U can Try to play -> https://play.unity.com/api/v1/games/game/b131f11c-410e-4a2d-b993-5c84a243d8d3/build/latest/frame
-
 🎮Геймплей
+
+https://github.com/user-attachments/assets/2c966702-26b1-40a5-9bd4-da663713f095
 
 Стрелки движутся от края экрана к центру. Ваша задача – нажать соответствующую клавишу точно в момент, когда стрелка достигает центральной зоны. Чем точнее нажатие, тем выше счёт и комбо!
 
